@@ -1,3 +1,6 @@
+DROP DATABASE IF EXISTS proyecto;
+CREATE DATABASE proyecto;
+USE proyecto;
 -- MySQL dump 10.13  Distrib 5.7.24, for Linux (x86_64)
 --
 -- Host: 127.0.0.1    Database: proyecto
@@ -19,21 +22,18 @@
 -- Table structure for table `Clientes`
 --
 
-DROP TABLE IF EXISTS `Clientes`;
+DROP TABLE IF EXISTS `clientes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `Clientes` (
-  `CodCliente` int(11) NOT NULL AUTO_INCREMENT,
-  `DNI` char(9) NOT NULL,
-  `Nombre` varchar(45) NOT NULL,
-  `Apellidos` varchar(45) NOT NULL,
-  `Direccion` varchar(255) DEFAULT NULL,
-  `Telefono` int(11) DEFAULT NULL,
-  `Codigo_Postal` char(5) DEFAULT NULL,
-  `Usuario` varchar(45) NOT NULL,
-  `Password` varchar(45) NOT NULL,
-  `Correo` varchar(45) NOT NULL,
-  PRIMARY KEY (`CodCliente`)
+CREATE TABLE `clientes` (
+  `codcliente` int(11) NOT NULL AUTO_INCREMENT,
+  `dni` char(9) NOT NULL,
+  `nombre` varchar(45) NOT NULL,
+  `apellidos` varchar(45) NOT NULL,
+  `direccion` varchar(255) DEFAULT NULL,
+  `telefono` int(11) DEFAULT NULL,
+  `codigo_postal` char(5) DEFAULT NULL,
+  PRIMARY KEY (`codcliente`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -41,27 +41,27 @@ CREATE TABLE `Clientes` (
 -- Dumping data for table `Clientes`
 --
 
-LOCK TABLES `Clientes` WRITE;
-/*!40000 ALTER TABLE `Clientes` DISABLE KEYS */;
-/*!40000 ALTER TABLE `Clientes` ENABLE KEYS */;
+LOCK TABLES `clientes` WRITE;
+/*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
+/*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
 -- Table structure for table `Empleados`
 --
 
-DROP TABLE IF EXISTS `Empleados`;
+DROP TABLE IF EXISTS `empleados`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `Empleados` (
-  `CodEmpleado` int(11) NOT NULL,
-  `DNI` char(9) NOT NULL,
-  `Nombre` varchar(45) NOT NULL,
-  `Apellidos` varchar(45) NOT NULL,
-  `Direccion` varchar(255) DEFAULT NULL,
-  `Telefono` char(9) DEFAULT NULL,
-  `FechaContratacion` date DEFAULT NULL,
-  PRIMARY KEY (`CodEmpleado`)
+CREATE TABLE `empleados` (
+  `codempleado` int(11) NOT NULL,
+  `dni` char(9) NOT NULL,
+  `nombre` varchar(45) NOT NULL,
+  `apellidos` varchar(45) NOT NULL,
+  `direccion` varchar(255) DEFAULT NULL,
+  `telefono` char(9) DEFAULT NULL,
+  `fechacontratacion` date DEFAULT NULL,
+  PRIMARY KEY (`codempleado`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -69,27 +69,27 @@ CREATE TABLE `Empleados` (
 -- Dumping data for table `Empleados`
 --
 
-LOCK TABLES `Empleados` WRITE;
-/*!40000 ALTER TABLE `Empleados` DISABLE KEYS */;
-/*!40000 ALTER TABLE `Empleados` ENABLE KEYS */;
+LOCK TABLES `empleados` WRITE;
+/*!40000 ALTER TABLE `empleados` DISABLE KEYS */;
+/*!40000 ALTER TABLE `empleados` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
 -- Table structure for table `Libros`
 --
 
-DROP TABLE IF EXISTS `Libros`;
+DROP TABLE IF EXISTS `libros`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `Libros` (
-  `ISBN` int(13) NOT NULL AUTO_INCREMENT,
-  `Titulo` varchar(45) NOT NULL,
-  `Autor` varchar(45) NOT NULL,
-  `Editorial` varchar(45) NOT NULL,
-  `NumPag` int(11) DEFAULT NULL,
-  `Encuadernacion` varchar(45) DEFAULT NULL,
-  `Precio` int(11) NOT NULL,
-  PRIMARY KEY (`ISBN`)
+CREATE TABLE `libros` (
+  `isbn` int(13) NOT NULL AUTO_INCREMENT,
+  `titulo` varchar(45) NOT NULL,
+  `autor` varchar(45) NOT NULL,
+  `editorial` varchar(45) NOT NULL,
+  `numpag` int(11) DEFAULT NULL,
+  `encuadernacion` varchar(45) DEFAULT NULL,
+  `precio` int(11) NOT NULL,
+  PRIMARY KEY (`isbn`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -97,28 +97,28 @@ CREATE TABLE `Libros` (
 -- Dumping data for table `Libros`
 --
 
-LOCK TABLES `Libros` WRITE;
-/*!40000 ALTER TABLE `Libros` DISABLE KEYS */;
-/*!40000 ALTER TABLE `Libros` ENABLE KEYS */;
+LOCK TABLES `libros` WRITE;
+/*!40000 ALTER TABLE `libros` DISABLE KEYS */;
+/*!40000 ALTER TABLE `libros` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
 -- Table structure for table `Pedidos`
 --
 
-DROP TABLE IF EXISTS `Pedidos`;
+DROP TABLE IF EXISTS `pedidos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `Pedidos` (
-  `CodPedido` int(11) NOT NULL AUTO_INCREMENT,
-  `FechaEntrega` varchar(45) NOT NULL,
-  `CodCliente` int(11) DEFAULT NULL,
-  `CodEmpleado` int(11) DEFAULT NULL,
-  PRIMARY KEY (`CodPedido`),
-  KEY `fk_Pedidos_1_idx` (`CodCliente`),
-  KEY `fk_Pedidos_2_idx` (`CodEmpleado`),
-  CONSTRAINT `fk_Pedidos_1` FOREIGN KEY (`CodCliente`) REFERENCES `Clientes` (`CodCliente`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Pedidos_2` FOREIGN KEY (`CodEmpleado`) REFERENCES `Empleados` (`CodEmpleado`) ON DELETE NO ACTION ON UPDATE NO ACTION
+CREATE TABLE `pedidos` (
+  `codpedido` int(11) NOT NULL AUTO_INCREMENT,
+  `fechaentrega` varchar(45) NOT NULL,
+  `codcliente` int(11) DEFAULT NULL,
+  `codempleado` int(11) DEFAULT NULL,
+  PRIMARY KEY (`codpedido`),
+  KEY `fk_Pedidos_1_idx` (`codcliente`),
+  KEY `fk_Pedidos_2_idx` (`codempleado`),
+  CONSTRAINT `fk_Pedidos_1` FOREIGN KEY (`codcliente`) REFERENCES `clientes` (`codcliente`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Pedidos_2` FOREIGN KEY (`codempleado`) REFERENCES `empleados` (`codempleado`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -126,26 +126,26 @@ CREATE TABLE `Pedidos` (
 -- Dumping data for table `Pedidos`
 --
 
-LOCK TABLES `Pedidos` WRITE;
-/*!40000 ALTER TABLE `Pedidos` DISABLE KEYS */;
-/*!40000 ALTER TABLE `Pedidos` ENABLE KEYS */;
+LOCK TABLES `pedidos` WRITE;
+/*!40000 ALTER TABLE `pedidos` DISABLE KEYS */;
+/*!40000 ALTER TABLE `pedidos` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
 -- Table structure for table `Tienen`
 --
 
-DROP TABLE IF EXISTS `Tienen`;
+DROP TABLE IF EXISTS `tienen`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `Tienen` (
-  `Cantidad` int(11) NOT NULL,
-  `CodPedido` int(11) NOT NULL,
-  `ISBN` int(13) NOT NULL,
-  KEY `fk_Tienen_1_idx` (`ISBN`),
-  KEY `fk_Tienen_2_idx` (`CodPedido`),
-  CONSTRAINT `fk_Tienen_1` FOREIGN KEY (`ISBN`) REFERENCES `Libros` (`ISBN`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Tienen_2` FOREIGN KEY (`CodPedido`) REFERENCES `Pedidos` (`CodPedido`) ON DELETE NO ACTION ON UPDATE NO ACTION
+CREATE TABLE `tienen` (
+  `cantidad` int(11) NOT NULL,
+  `codpedido` int(11) NOT NULL,
+  `isbn` int(13) NOT NULL,
+  KEY `fk_Tienen_1_idx` (`isbn`),
+  KEY `fk_Tienen_2_idx` (`codpedido`),
+  CONSTRAINT `fk_Tienen_1` FOREIGN KEY (`isbn`) REFERENCES `libros` (`isbn`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Tienen_2` FOREIGN KEY (`codpedido`) REFERENCES `pedidos` (`codpedido`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -153,9 +153,9 @@ CREATE TABLE `Tienen` (
 -- Dumping data for table `Tienen`
 --
 
-LOCK TABLES `Tienen` WRITE;
-/*!40000 ALTER TABLE `Tienen` DISABLE KEYS */;
-/*!40000 ALTER TABLE `Tienen` ENABLE KEYS */;
+LOCK TABLES `tienen` WRITE;
+/*!40000 ALTER TABLE `tienen` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tienen` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --

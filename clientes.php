@@ -21,7 +21,7 @@ if ($connection->connect_errno) {
 
 //MAKING A SELECT QUERY
 /* Consultas de selección que devuelven un conjunto de resultados */
-  $query="SELECT * from Clientes";
+  $query="SELECT * from clientes";
 if ($result = $connection->query($query)) {
 
     printf("<p>The select query returned %d rows.</p>", $result->num_rows);
@@ -36,8 +36,8 @@ if ($result = $connection->query($query)) {
         <th>DNI</th>
         <th>Nombre</th>
         <th>Apellidos</th>
-        <th>Telefono</th>
         <th>Direccion</th>
+        <th>Telefono</th>
     </thead>
 
 <?php
@@ -47,12 +47,12 @@ if ($result = $connection->query($query)) {
     while($obj = $result->fetch_object()) {
         //PRINTING EACH ROW
         echo "<tr>";
-          echo "<td>".$obj->CodCliente."</td>";
-          echo "<td>".$obj->DNI."</td>";
-          echo "<td>".$obj->Nombre."</td>";
-          echo "<td>".$obj->Apellidos."</td>";
-          echo "<td>".$obj->Direccion."</td>";
-          echo "<td>".$obj->Telefono."</td>";
+          echo "<td>".$obj->codcliente."</td>";
+          echo "<td>".$obj->dni."</td>";
+          echo "<td>".$obj->nombre."</td>";
+          echo "<td>".$obj->apellidos."</td>";
+          echo "<td>".$obj->direccion."</td>";
+          echo "<td>".$obj->telefono."</td>";
         echo "</tr>";
     }
 
