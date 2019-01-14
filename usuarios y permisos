@@ -1,0 +1,18 @@
+mysql -u root -p123456
+GRANT ALL ON *.* TO 'admin'@'localhost' IDENTIFIED BY "123456";
+GRANT ALL ON *.* TO 'admin'@'127.0.0.1' IDENTIFIED BY "123456";
+GRANT ALL ON *.* TO 'admin'@'%' IDENTIFIED BY "123456";
+GRANT ALL ON proyecto.* TO 'admin'@'localhost' IDENTIFIED BY "123456";
+GRANT ALL ON proyecto.* TO 'admin'@'127.0.0.1' IDENTIFIED BY "123456";
+GRANT ALL ON proyecto.* TO 'admin'@'%' IDENTIFIED BY "123456";
+CREATE USER 'user'@'localhost' IDENTIFIED BY '2asirtriana';
+CREATE USER 'user'@'127.0.0.1' IDENTIFIED BY '2asirtriana';
+CREATE USER 'user'@'%' IDENTIFIED BY '2asirtriana';
+GRANT SELECT,UPDATE,DELETE,INSERT ON *.* TO 'user'@'localhost' IDENTIFIED BY "2asirtrana";
+GRANT SELECT,UPDATE,DELETE,INSERT ON *.* TO 'user'@'127.0.0.1' IDENTIFIED BY "2asirtrana";
+GRANT SELECT,UPDATE,DELETE,INSERT ON *.* TO 'user'@'%' IDENTIFIED BY "2asirtrana";
+GRANT SELECT,UPDATE,DELETE,INSERT ON proyecto.* TO 'user'@'localhost' IDENTIFIED BY "2asirtrana";
+GRANT SELECT,UPDATE,DELETE,INSERT ON proyecto.* TO 'user'@'127.0.0.1' IDENTIFIED BY "2asirtrana";
+GRANT SELECT,UPDATE,DELETE,INSERT ON proyecto.* TO 'user'@'%' IDENTIFIED BY "2asirtrana";
+FLUSH PRIVILEGES;
+EXIT;
