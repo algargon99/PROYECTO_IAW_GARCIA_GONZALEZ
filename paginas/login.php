@@ -17,6 +17,7 @@
 
           //CREATING THE CONNECTION
           $connection = new mysqli("localhost", "user", "123456", "proyecto");
+          
 
           //TESTING IF THE CONNECTION WAS RIGHT
           if ($connection->connect_errno) {
@@ -26,7 +27,7 @@
 
           //MAKING A SELECT QUERY
           //Password coded with md5 at the database. Look for better options
-          $consulta="select * from usuario where
+          $consulta="select * from usuarios where
           username='".$_POST["user"]."' and password=md5('".$_POST["password"]."');";
 
           //Test if the query was correct
@@ -56,7 +57,7 @@
       <p><input name="user" required></p>
       <p><input name="password" type="password" required></p>
       <p><input type="submit" value="Entrar"></p>
-
+          <a href="registro.php">Regístrate</a>
     </form>
 
 
