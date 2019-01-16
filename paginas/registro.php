@@ -9,19 +9,18 @@
 </head>
 <body>
            <?php if (!isset($_POST["user"])) : ?>
-           <?php          
-
-           echo "<p>NOMBRE DE USUARIO <input type='text' name='user'></p>";
-           echo "<p>CONTRASEÑA <input type='password' name='password'></p>";
-           echo "<p>NOMBRE <input type='text' name='nombre'></p>";
-           echo "<p>CORREO <input type='mail' name='correo'></p>";
-       
-           echo "<p><input type='submit' value='Entrar'></p>";
-           echo "<br>";
+            <form method="post">
+            <p>NOMBRE DE USUARIO <input type='text' name='user'></p>
+            <p>CONTRASEÑA <input type='password' name='password'></p>
+            <p>NOMBRE <input type='text' name='nombre'></p>
+            <p>CORREO <input type='mail' name='correo'></p>
+        
+            <p><input type='submit' value='Entrar'></p>
+            <br>
+            </form>
+            
            
-           
-           
-           ?>
+          
            <?php else:?>
            <?php
            $connection = new mysqli("localhost", "user", "2asirtriana", "proyecto");
@@ -34,10 +33,10 @@
 
           //MAKING A SELECT QUERY
           //Password coded with md5 at the database. Look for better options
-          $consulta="insert into usuarios (user,password,nombre,correo,fecha_alta) values
+          $consulta="INSERT into usuarios (user,password,nombre,correo,fecha_alta) values
           ('$_POST[user]',md5('$_POST[password]'),'$_POST[nombre]','$_POST[correo]',curdate())";
 
-          $consulta2="select * from usuarios where user=$_POST[nombre]";
+          $consulta2="select * from usuarios where user='$_POST[user]'";
 
           //Test if the query was correct
           //SQL Injection Possible
@@ -46,7 +45,8 @@
             
               //No rows returned
               if ($result->num_rows===0) {
-                if ($result = $connection->query($consulta1)) {
+                if ($result = $connection->query($consulta)) {
+                    echo $consulta;
                     header("Location: login.php");
                 }
               } else {
