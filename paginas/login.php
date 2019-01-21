@@ -7,9 +7,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
-    <link rel="stylesheet" type="text/css" href=" ">
+    <link rel="stylesheet" href="login.css">  
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     </head>
-  <body>
+  <body id="LoginForm">
 
     <?php
         //FORM SUBMITTED
@@ -54,15 +57,41 @@
       }
     ?>
 
-    <form action="login.php" method="post">
+          
+  
 
-      <p><input name="user" required></p>
-      <p><input name="password" type="password" required></p>
-      <p><input type="submit" value="Entrar"></p>
-          <a href="registro.php">Regístrate</a>
+  
+<div class="container">
+<h1 class="form-heading">BookFace</h1>
+<div class="login-form">
+<div class="main-div">
+    <div class="panel">
+   <h2>Inicio de Sesión</h2>
+   <p>Introduce tu usuario y contraseña</p>
+   </div>
+    <form action="principal.php" id="Login">
+
+        <div class="form-group">
+
+
+            <input type="text" class="form-control" name="user" id="inputEmail" placeholder="Usuario">
+
+        </div>
+
+        <div class="form-group">
+
+            <input type="password" class="form-control" name="password" id="inputPassword" placeholder="Contraseña">
+
+        </div>
+        <div>
+        <a href="registro.php">Regístrate</a>
+        </div>
+        <button type="submit" class="btn btn-primary">Login</button>
+
     </form>
-
-
-
-  </body>
+    </div>
+</div>
+</div>
+</div>
+</body>
 </html>
