@@ -1,3 +1,4 @@
+<?php session_start() ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +13,7 @@
 </head>
 <body>
 <div class="row">
-<?php include_once("menuadmin.php"); ?>
+<?php include_once "menuadmin.php" ?>
 </div>
 <div>
 <p>HOLA</p>

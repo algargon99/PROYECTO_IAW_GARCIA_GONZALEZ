@@ -11,17 +11,10 @@ if ($connection->connect_errno) {
     printf("Connection failed: %s\n", $connection->connect_error);
     exit();
 }
-
 //MAKING A SELECT QUERY
 /* Consultas de selección que devuelven un conjunto de resultados */
 if ($result = $connection->query("select * from usuarios where user='$_SESSION[user]'")) {
 
-
-?>
-
-    
-
-<?php
 
     //FETCHING OBJECTS FROM THE RESULT SET
     //THE LOOP CONTINUES WHILE WE HAVE ANY OBJECT (Query Row) LEFT

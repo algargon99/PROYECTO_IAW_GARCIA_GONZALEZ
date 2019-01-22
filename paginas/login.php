@@ -37,7 +37,7 @@
           //SQL Injection Possible
           //Check http://php.net/manual/es/mysqli.prepare.php for more security
           if ($result = $connection->query($consulta)) {
-
+            echo $consulta;
               //No rows returned
               if ($result->num_rows===0) {
                 echo "LOGIN INVALIDO";
@@ -68,7 +68,7 @@
    <h2>Inicio de Sesión</h2>
    <p>Introduce tu usuario y contraseña</p>
    </div>
-    <form action="principal.php" id="Login">
+    <form  method="post" id="Login">
 
         <div class="form-group">
 

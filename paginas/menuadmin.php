@@ -35,8 +35,8 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="perfiladmin.php">Admin</a></li>
-        <li><a href="login.php">Cerrar sesión</a></li>
+        <li id="boton"><?php include_once "cerrarsesion.php" ?></li>
       </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
+    </div>
+  </div>
 </nav>
