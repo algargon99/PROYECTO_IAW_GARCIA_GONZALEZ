@@ -5,19 +5,57 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <link rel="stylesheet" href="registro.css">  
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
            <?php if (!isset($_POST["user"])) : ?>
             <form method="post">
-            <p>NOMBRE DE USUARIO <input type='text' name='user'></p>
-            <p>CONTRASEÑA <input type='password' name='password'></p>
-            <p>NOMBRE <input type='text' name='nombre'></p>
-            <p>CORREO <input type='mail' name='correo'></p>
         
-            <p><input type='submit' value='Entrar'></p>
-            <br>
-            </form>
+        
+            <div class="container">
+            <h1 class="form-heading">BookFace</h1>
+            <div class="row">
+            <div class="login-form col-md-12">
+            <div class="main-div">
+                <div class="panel">
+            <h2>Crea tu cuenta</h2>
+            </div>
+                    <div class="form-group">
+
+
+                        <input type="text" class="form-control" name="user" placeholder="Usuario">
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <input type="password" class="form-control" name="password" placeholder="Contraseña">
+
+                    </div>
+                    <div class="form-group">
+
+                        <input type="text" class="form-control" name="nombre" placeholder="Nombre y apellidos">
+
+                    </div>
+                    <div class="form-group">
+
+                        <input type="email" class="form-control" name="correo" placeholder="Correo">
+
+                    </div>
+                    <button type="submit" class="btn btn-primary">Crear</button>
+
+                </form>
+                </div>
+                <form action="login.php">
+                    <input class="btn" id="salir" type="submit" value="Salir">
+                </form>
+            </div>
+            </div>
+            </div>
+            </div>
             
            
           

@@ -57,13 +57,12 @@
       }
     ?>
 
-          
-  
 
   
 <div class="container">
 <h1 class="form-heading">BookFace</h1>
-<div class="login-form">
+<div class="row">
+<div class="login-form col-md-12">
 <div class="main-div">
     <div class="panel">
    <h2>Inicio de Sesión</h2>
@@ -74,22 +73,26 @@
         <div class="form-group">
 
 
-            <input type="text" class="form-control" name="user" id="inputEmail" placeholder="Usuario">
+            <input type="text" class="form-control" name="user" placeholder="Usuario">
 
         </div>
 
         <div class="form-group">
 
-            <input type="password" class="form-control" name="password" id="inputPassword" placeholder="Contraseña">
+            <input type="password" class="form-control" name="password" placeholder="Contraseña">
 
         </div>
-        <div>
+        
+        <button type="submit" class="btn btn-primary">Entrar</button>
+        <div id="registrar">
         <a href="registro.php">Regístrate</a>
         </div>
-        <button type="submit" class="btn btn-primary">Login</button>
 
     </form>
     </div>
+</div>
+<div>
+</div>
 </div>
 </div>
 </div>

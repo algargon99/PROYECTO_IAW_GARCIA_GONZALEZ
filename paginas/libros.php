@@ -15,7 +15,7 @@
 <?php include_once("menuadmin.php"); ?>
 </div>
 <div>
-<p>HOLA</p>
+<p></p>
 </div>
 
 </body>

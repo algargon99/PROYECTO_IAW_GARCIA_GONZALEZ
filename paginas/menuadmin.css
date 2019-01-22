@@ -116,4 +116,6 @@ nav:hover .forAnimate{
 section{
   padding-left: 15px;
 }
-
+.row{
+  padding: 0px 15px;
+}

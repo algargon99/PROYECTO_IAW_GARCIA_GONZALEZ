@@ -1,8 +1,18 @@
-#header{
-    background-color: red;
-    length: 20px;
-  }
-h1{
-    color: white;
+
+h2{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
+#boton{
+    background: blue;
+    color: white;
+    margin: 10px;
+
+    
+  }
+  #header{
+      background-color: white;
+      
+  }
+  html{
+      margin-top: -10px;
+  }

@@ -10,9 +10,8 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </head>
 <body>
-<?php include_once("header.php")?>
 <div class="row">
-<div class="col-md-2">
+<div>
     <?php include_once("menuadmin.php"); ?>
     </div>
     <div class="col-md-10">
