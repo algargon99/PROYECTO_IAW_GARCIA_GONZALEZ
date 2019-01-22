@@ -195,3 +195,4 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2019-01-14 10:18:14
+INSERT INTO usuarios VALUES(1,"admin","admin","Admin","admin@admin.com",curdate());
