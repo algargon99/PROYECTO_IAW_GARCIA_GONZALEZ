@@ -1,4 +1,7 @@
-<?php session_start() ?>
+<?php session_start();
+
+if (isset($_SESSION["user"]) && $_SESSION["user"]=="admin") { ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,3 +24,11 @@
 
 </body>
 </html>
+
+<?php } else {
+    session_destroy();
+    header("Location: login.php");
+  }
+
+
+ ?>

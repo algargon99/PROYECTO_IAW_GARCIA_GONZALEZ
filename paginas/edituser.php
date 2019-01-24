@@ -8,23 +8,23 @@
                     <div class="form-group">
 
 
-                        <input type="text" class="form-control" name="user" placeholder="Usuario">
+                        <input type="text" class="form-control" name="user" placeholder="Usuario" value="<?php echo $_GET['user']; ?>">
 
                     </div>
 
                     <div class="form-group">
 
-                        <input type="password" class="form-control" name="password" placeholder="Contraseña">
+                        <input type="password" class="form-control" name="password" placeholder="Contraseña" value="<?php echo $_GET['password']; ?>">
 
                     </div>
                     <div class="form-group">
 
-                        <input type="text" class="form-control" name="nombre" placeholder="Nombre y apellidos">
+                        <input type="text" class="form-control" name="nombre" placeholder="Nombre y apellidos" value="<?php echo $_GET['nombre']; ?>">
 
                     </div>
                     <div class="form-group">
 
-                        <input type="email" class="form-control" name="correo" placeholder="Correo">
+                        <input type="email" class="form-control" name="correo" placeholder="Correo" value="<?php echo $_GET['correo']; ?>">
 
                     </div>
                     <button type="submit" class="btn btn-primary">Crear</button>
@@ -50,30 +50,22 @@
 
           //MAKING A SELECT QUERY
           //Password coded with md5 at the database. Look for better options
-          $consulta="INSERT into usuarios (user,password,nombre,correo,fecha_alta) values
-          ('$_POST[user]',md5('$_POST[password]'),'$_POST[nombre]','$_POST[correo]',curdate())";
+          $consulta="UPDATE usuarios set user='$_POST[user]', password=md5('$_POST[password]'),nombre='$_POST[nombre]',correo='$_POST[correo]' 
+          where id=$_GET[id]";
 
-          $consulta2="select * from usuarios where user='$_POST[user]'";
 
           //Test if the query was correct
           //SQL Injection Possible
           //Check http://php.net/manual/es/mysqli.prepare.php for more security
-          if ($result = $connection->query($consulta2)) {
-            
-              //No rows returned
-              if ($result->num_rows===0) {
+        
                 if ($result = $connection->query($consulta)) {
-                    header("Location: mostrarusuarios.php");
+                    header("Location: usuarioaeditar.php");
                 }
-              } else {
-                    echo "<h1>Usuario ya registrado; ingrese otro usuario</h1>";
-                    header("refresh:3;url=crearusuarios.php");
+               else {
+                    echo "<h1>Usuario no actulizado</h1>";
+                    echo $consulta;
+                    //header("refresh:3;url=editarusuarios.php");
                 
               }
-
-          } else {
-            echo "Wrong Query";
-          }
-   
     ?>
           <?php endif ?>

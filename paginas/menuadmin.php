@@ -28,7 +28,7 @@
           <ul class="dropdown-menu">
             <li><a href="mostrarusuarios.php">Mostrar</a></li>
             <li><a href="crearusuarios.php">Crear</a></li>
-            <li><a href="editarusuarios.php">Editar</a></li>
+            <li><a href="usuarioaeditar.php">Editar</a></li>
             <li><a href="borrarusuarios.php">Borrar</a></li>
           </ul>
         </li>

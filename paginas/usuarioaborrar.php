@@ -1,12 +1,9 @@
+
 <html>
 <head><title>CONSULTA</title></head>
 <body>
 <?php
 
-//Open the session
-session_start();
-
-if (isset($_SESSION["user"]) && $_SESSION["user"]=="admin") {
 //CREATING THE CONNECTION
 $connection = new mysqli("localhost", "root", "123456", "proyecto");
 $connection->set_charset("utf8");
@@ -48,7 +45,7 @@ if ($result = $connection->query("select * from usuarios;")) {
         echo "<td>".$obj->nombre."</td>";
         echo "<td>".$obj->correo."</td>";
         echo "<td>".$obj->fecha_alta."</td>";
-        echo "<td><a href=usuario.php?cod=$obj->id>Datos del usuario</a></td>";
+        echo "<td><a href=borraruser.php?id=$obj->id&user=$obj->user>Borrar usuario</a></td>";
 
         echo "</tr>";
     }
@@ -59,11 +56,6 @@ if ($result = $connection->query("select * from usuarios;")) {
     unset($connection);
 
 } //END OF THE IF CHECKING IF THE QUERY WAS RIGHT
-} else {
-    session_destroy();
-    header("Location: login.php");
-  }
-
 
 ?>
 </body>

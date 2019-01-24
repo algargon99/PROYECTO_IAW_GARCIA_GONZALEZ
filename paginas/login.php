@@ -37,10 +37,9 @@
           //SQL Injection Possible
           //Check http://php.net/manual/es/mysqli.prepare.php for more security
           if ($result = $connection->query($consulta)) {
-            echo $consulta;
               //No rows returned
-              if ($result->num_rows===0) {
-                echo "LOGIN INVALIDO";
+              if ($result->num_rows===0) { 
+                echo "<script type='text/javascript'>alert('Login Inválido');</script>";
               } else {
                 //VALID LOGIN. SETTING SESSION VARS
                 $_SESSION["user"]=$_POST["user"];
