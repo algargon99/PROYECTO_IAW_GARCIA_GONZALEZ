@@ -63,12 +63,11 @@
               //No rows returned
               if ($result->num_rows===0) {
                 if ($result = $connection->query($consulta)) {
-                    echo $consulta;
-                    header("Location: login.php");
+                    header("Location: mostarusuarios.php");
                 }
               } else {
                     echo "<h1>Usuario ya registrado; ingrese otro usuario</h1>";
-                    header("refresh:3;url=registro.php");
+                    header("refresh:3;url=crearusuarios.php");
                 
               }
 
