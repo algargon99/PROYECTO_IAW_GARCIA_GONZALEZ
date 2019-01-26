@@ -2,4 +2,5 @@ body{
     background-image:url("http://culto.latercera.com/wp-content/uploads/2017/04/Libros-1-900x600.jpg");  
     background-position:center; 
     background-size: 100%;
+    background-repeat: no-repeat;
     padding:10px;}
