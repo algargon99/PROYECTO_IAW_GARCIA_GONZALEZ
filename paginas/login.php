@@ -58,42 +58,40 @@
 
 
   
-<div class="container">
-<h1 class="form-heading">BookFace</h1>
-<div class="row">
-<div class="login-form col-md-12">
-<div class="main-div">
-    <div class="panel">
-   <h2>Inicio de Sesión</h2>
-   <p>Introduce tu usuario y contraseña</p>
-   </div>
-    <form  method="post" id="Login">
+    <div class="container">
+        <h1 style="color: white; font-size: 50px;">BookFace</h1>
+        <div class="row">
+            <div class="login-form col-md-12">
+                <div class="main-div">
+                    <div class="panel">
+                <h2>Inicio de Sesión</h2>
+                <p>Introduce tu usuario y contraseña</p>
+                </div>
+                    <form  method="post" id="Login">
 
-        <div class="form-group">
+                        <div class="form-group">
 
 
-            <input type="text" class="form-control" name="user" placeholder="Usuario">
+                            <input type="text" class="form-control" name="user" placeholder="Usuario">
 
+                        </div>
+
+                        <div class="form-group">
+
+                            <input type="password" class="form-control" name="password" placeholder="Contraseña">
+
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Entrar</button>
+                        <div id="registrar">
+                        ¿No tienes cuenta? <a href="registro.php">Regístrate</a>
+                        </div>
+
+                    </form>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <div class="form-group">
-
-            <input type="password" class="form-control" name="password" placeholder="Contraseña">
-
-        </div>
-        
-        <button type="submit" class="btn btn-primary">Entrar</button>
-        <div id="registrar">
-        <a href="registro.php">Regístrate</a>
-        </div>
-
-    </form>
     </div>
-</div>
-<div>
-</div>
-</div>
-</div>
-</div>
 </body>
 </html>
