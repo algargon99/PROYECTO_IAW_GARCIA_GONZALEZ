@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="menuadmin.css">
+
 
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="https://cdknjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
@@ -18,33 +18,33 @@
       <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Libros <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="mostrarlibros.php">Mostrar</a></li>
-            <li><a href="crearlibros.php">Crear</a></li>
-            <li><a href="libroaeditar.php">Editar</a></li>
-            <li><a href="borrarlibros.php">Borrar</a></li>
+            <li><a href="../Libros/mostrarlibros.php">Mostrar</a></li>
+            <li><a href="../Libros/crearlibros.php">Crear</a></li>
+            <li><a href="../Libros/libroaeditar.php">Editar</a></li>
+            <li><a href="../Libros/borrarlibros.php">Borrar</a></li>
           </ul>
         </li>
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pedidos <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="mostrarpedidos.php">Mostrar</a></li>
-            <li><a href="crearpedidos.php">Crear</a></li>
-            <li><a href="pedidoaeditar.php">Editar</a></li>
-            <li><a href="borrarpedidos.php">Borrar</a></li>
+            <li><a href="../Pedidos/mostrarpedidos.php">Mostrar</a></li>
+            <li><a href="../Pedidos/crearpedidos.php">Crear</a></li>
+            <li><a href="../Pedidos/pedidoaeditar.php">Editar</a></li>
+            <li><a href="../Pedidos/borrarpedidos.php">Borrar</a></li>
           </ul>
         </li>
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Clientes <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="mostrarusuarios.php">Mostrar</a></li>
-            <li><a href="crearusuarios.php">Crear</a></li>
-            <li><a href="usuarioaeditar.php">Editar</a></li>
-            <li><a href="borrarusuarios.php">Borrar</a></li>
+            <li><a href="../Usuarios/mostrarusuarios.php">Mostrar</a></li>
+            <li><a href="../Usuarios/crearusuarios.php">Crear</a></li>
+            <li><a href="../Usuarios/usuarioaeditar.php">Editar</a></li>
+            <li><a href="../Usuarios/borrarusuarios.php">Borrar</a></li>
           </ul>
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="perfiladmin.php">Admin</a></li>
+        <li><a href="perfiladmin.php"><?php echo $_SESSION["user"] ?></a></li>
         <li id="boton"><?php include_once "cerrarsesion.php" ?></li>
       </ul>
     </div>

@@ -16,10 +16,10 @@ if (isset($_SESSION["user"]) && $_SESSION["user"]!="admin") { ?>
 </head>
 <body>
 <div class="row">
-<?php include_once "menuadmin.php" ?>
+<?php include_once "menuusuario.php" ?>
 </div>
 <div>
-<p>HOLA</p>
+<p>Bienvenido, Usuario <?php echo $_SESSION["user"]; ?></p>
 </div>
 
 </body>
