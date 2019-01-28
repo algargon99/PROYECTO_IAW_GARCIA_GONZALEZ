@@ -16,25 +16,25 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
       <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Libros <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../Libros/mostrarlibros.php">Mostrar</a></li>
-            <li><a href="../Libros/crearlibros.php">Crear</a></li>
-            <li><a href="../Libros/libroaeditar.php">Editar</a></li>
-            <li><a href="../Libros/borrarlibros.php">Borrar</a></li>
+      <a class="nav-link dropdown-toggle" href="#" id="navdrop" role="button" data-toggle="dropdown" data-hover="dropdown">Libros<span class="caret"></span></a>          
+      <ul class="dropdown-menu">
+            <li><a href="../librosadmin/mostrarlibros.php">Mostrar</a></li>
+            <li><a href="../librosadmin/crearlibros.php">Crear</a></li>
+            <li><a href="../librosadmin/libroaeditar.php">Editar</a></li>
+            <li><a href="../librosadmin/borrarlibros.php">Borrar</a></li>
           </ul>
         </li>
         <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pedidos <span class="caret"></span></a>
+        <a class="nav-link dropdown-toggle" href="#" id="navdrop" role="button" data-toggle="dropdown" data-hover="dropdown">Pedidos<span class="caret"></span></a>          
           <ul class="dropdown-menu">
-            <li><a href="../Pedidos/mostrarpedidos.php">Mostrar</a></li>
-            <li><a href="../Pedidos/crearpedidos.php">Crear</a></li>
-            <li><a href="../Pedidos/pedidoaeditar.php">Editar</a></li>
-            <li><a href="../Pedidos/borrarpedidos.php">Borrar</a></li>
+            <li><a href="../pedidosadmin/mostrarpedidos.php">Mostrar</a></li>
+            <li><a href="../pedidosadmin/crearpedidos.php">Crear</a></li>
+            <li><a href="../pedidosadmin/pedidoaeditar.php">Editar</a></li>
+            <li><a href="../pedidosadmin/borrarpedidos.php">Borrar</a></li>
           </ul>
         </li>
         <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Clientes <span class="caret"></span></a>
+      <a class="nav-link dropdown-toggle" href="#" id="navdrop" role="button" data-toggle="dropdown" data-hover="dropdown">Usuarios<span class="caret"></span></a>          
           <ul class="dropdown-menu">
             <li><a href="../usuariosadmin/mostrarusuarios.php">Mostrar</a></li>
             <li><a href="../usuariosadmin/crearusuarios.php">Crear</a></li>

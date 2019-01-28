@@ -196,3 +196,5 @@ UNLOCK TABLES;
 
 -- Dump completed on 2019-01-14 10:18:14
 INSERT INTO usuarios VALUES(1,"admin",md5("admin"),"Admin","admin@admin.com",curdate());
+
+alter table libros auto_increment=1;
