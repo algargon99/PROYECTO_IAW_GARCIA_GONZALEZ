@@ -36,16 +36,31 @@
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Clientes <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="../Usuarios/mostrarusuarios.php">Mostrar</a></li>
-            <li><a href="../Usuarios/crearusuarios.php">Crear</a></li>
-            <li><a href="../Usuarios/usuarioaeditar.php">Editar</a></li>
-            <li><a href="../Usuarios/borrarusuarios.php">Borrar</a></li>
+            <li><a href="../usuariosadmin/mostrarusuarios.php">Mostrar</a></li>
+            <li><a href="../usuariosadmin/crearusuarios.php">Crear</a></li>
+            <li><a href="../usuariosadmin/usuarioaeditar.php">Editar</a></li>
+            <li><a href="../usuariosadmin/borrarusuarios.php">Borrar</a></li>
           </ul>
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="perfiladmin.php"><?php echo $_SESSION["user"] ?></a></li>
-        <li id="boton"><?php include_once "cerrarsesion.php" ?></li>
+        <li id="boton"><?php 
+        
+        if (!isset($_POST["cerrar"])) : ?>
+        <form method="post">
+            <p><input class="btn" type="submit" name="cerrar" value="Cerrar sesión"></p>
+        </form>
+
+      <?php else: ?>
+
+        <?php
+            session_destroy();
+            header("Location: ../login.php");
+
+        ?>
+
+      <?php endif?></li>
       </ul>
     </div>
   </div>

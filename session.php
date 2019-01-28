@@ -5,10 +5,10 @@
 
   if (isset($_SESSION["user"]) && $_SESSION["user"]=="admin") {
     
-   header("Location: ./ADMIN/controladmin/principal.php");
+   header("Location: ./controladmin/principal.php");
   } 
   elseif (isset($_SESSION["user"]) && $_SESSION["user"]!="admin"){
-    header("Location: ./USER/controluser/principalusuario.php");
+   header("Location: ./controluser/principalusuario.php");
   }
   
   else {
