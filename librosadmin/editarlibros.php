@@ -1,6 +1,5 @@
 
 <?php ob_start(); ?>
-
 <!DOCTYPE html> 
 <html>
     <head>
@@ -32,35 +31,29 @@
         <div class="col-md-8">
 
         
-            <?php if (!isset($_POST["user"])) : ?>
+            <?php if (!isset($_POST["titulo"])) : ?>
 
                 <form method="post">
                     <div class="row">
-
                         <div class="login-form">
-
                             <div class="main-div">
-                        
                             <div class="form-group">
-
-
-                            <input type="text" class="form-control" name="user" placeholder="Usuario" value="<?php echo $_GET['user']; ?>">
-
+                                <input type="text" class="form-control" name="titulo" value="<?php echo $_GET['titulo']; ?>">
                             </div>
                             <div class="form-group">
-
-                                <input type="password" class="form-control" name="password" placeholder="Contraseña" value="<?php echo $_GET['password']; ?>">
-
+                                <input type="text" class="form-control" name="autor" value="<?php echo $_GET['autor']; ?>">
                             </div>
                             <div class="form-group">
-
-                                <input type="text" class="form-control" name="nombre" placeholder="Nombre y apellidos" value="<?php echo $_GET['nombre']; ?>">
-
+                                <input type="text" class="form-control" name="editorial" value="<?php echo $_GET['editorial']; ?>">
                             </div>
                             <div class="form-group">
-
-                                <input type="email" class="form-control" name="correo" placeholder="Correo" value="<?php echo $_GET['correo']; ?>">
-
+                                <input type="number" class="form-control" name="numpag" value="<?php echo $_GET['numpag']; ?>">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="encuadernacion" value="<?php echo $_GET['encuadernacion']; ?>">
+                            </div>
+                            <div class="form-group">
+                                <input type="number" class="form-control" name="precio" value="<?php echo $_GET['precio']; ?>">
                             </div>
                             <button type="submit" class="btn btn-primary">Editar</button>
                             </div>
@@ -78,30 +71,22 @@
             <?php
             $connection = new mysqli("localhost", "root", "123456", "proyecto");
 
-            //TESTING IF THE CONNECTION WAS RIGHT
             if ($connection->connect_errno) {
                 printf("Connection failed: %s\n", $connection->connect_error);
                 exit();
             }
 
-            //MAKING A SELECT QUERY
-            //Password coded with md5 at the database. Look for better options
-            $consulta="UPDATE usuarios set user='$_POST[user]', password=md5('$_POST[password]'),nombre='$_POST[nombre]',correo='$_POST[correo]' 
-            where id=$_GET[id]";
+            $consulta="UPDATE libros set titulo='$_POST[titulo]', autor='$_POST[autor]',
+            editorial='$_POST[editorial]',numpag='$_POST[numpag]',encuadernacion='$_POST[encuadernacion]',precio='$_POST[precio]' 
+            where isbn=$_GET[isbn]";
 
 
-            //Test if the query was correct
-            //SQL Injection Possible
-            //Check http://php.net/manual/es/mysqli.prepare.php for more security
-            
                     if ($result = $connection->query($consulta)) {
-                        header("Location: usuarioaeditar.php");
+                        header("Location: ./libroaeditar.php");
                         
                     }
-                else {
-                        echo "<h1>Usuario no actulizado</h1>";
-                    
-                        header("refresh:3;url=editarusuarios.php");
+                else {                    
+                        header("Location: editarlibros.php");
                 } ?>
             <?php endif ?>
 

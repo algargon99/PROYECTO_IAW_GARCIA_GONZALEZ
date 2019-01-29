@@ -44,7 +44,7 @@
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="perfiladmin.php"><?php echo $_SESSION["user"] ?></a></li>
+        <li><a href="../controladmin/perfiladmin.php"><?php echo $_SESSION["user"] ?></a></li>
         <li id="boton"><?php 
         
         if (!isset($_POST["cerrar"])) : ?>

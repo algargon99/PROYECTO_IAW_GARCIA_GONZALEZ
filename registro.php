@@ -26,18 +26,18 @@
                     <div class="form-group">
 
 
-                        <input type="text" class="form-control" name="user" placeholder="Usuario">
+                        <input type="text" class="form-control" name="user" placeholder="Usuario" required>
 
                     </div>
 
                     <div class="form-group">
 
-                        <input type="password" class="form-control" name="password" placeholder="Contraseña">
+                        <input type="password" class="form-control" name="password" placeholder="Contraseña" required>
 
                     </div>
                     <div class="form-group">
 
-                        <input type="text" class="form-control" name="nombre" placeholder="Nombre y apellidos">
+                        <input type="text" class="form-control" name="nombre" placeholder="Nombre y apellidos" required>
 
                     </div>
                     <div class="form-group">

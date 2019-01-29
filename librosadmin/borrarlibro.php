@@ -36,8 +36,8 @@ if (isset($_SESSION["user"]) && $_SESSION["user"]=="admin") {
             <div class="main-div row">
                 <div class="col-md-4"></div>
                 <div class="col-md-4" style="background-color: white; border-radius: 10px;">
-                    <center><h2>¿Quieres borrar el usuario <?php echo $_GET["user"]; ?>?</h2></center>
-                    <center><input type="submit" name="borrar" class="btn btn-primary" value="Borrar usuario" style="margin-bottom: 5px;"></center>
+                    <center><h2>¿Quieres borrar el libro <?php echo $_GET["titulo"]; ?>?</h2></center>
+                    <center><input type="submit" name="borrar" class="btn btn-primary" value="Borrar libro" style="margin-bottom: 5px;"></center>
                 <div class="col-md-4"></div>
 
                 
@@ -60,17 +60,19 @@ if (isset($_SESSION["user"]) && $_SESSION["user"]=="admin") {
 
           //MAKING A SELECT QUERY
           //Password coded with md5 at the database. Look for better options
-          $consulta="DELETE from usuarios where id=$_GET[id]";
+          $consulta="DELETE from libros where isbn='$_GET[isbn]'";
 
         
                 if ($result = $connection->query($consulta)) {
-                    echo "<h1>Usuario eliminado</h1>";
-                    header("refresh:3;url=borrarusuarios.php");
+                    echo "<h1>Libro eliminado</h1>";
+
+                    header("refresh:3;url=borrarlibros.php");
+                    
+
                 }
                else {
-                    echo "<h1>Usuario no eliminado</h1>";
-                    header("refresh:3;url=borraruser.php");
-
+                    echo "<h1>Libro no eliminado</h1>";
+                    echo $consulta;
                 
               }
           ?> 

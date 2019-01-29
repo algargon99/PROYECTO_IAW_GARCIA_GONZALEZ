@@ -27,33 +27,28 @@ if (isset($_SESSION["user"]) && $_SESSION["user"]=="admin") { ?>
     
     <div>
     
-    <?php if (!isset($_POST["user"])) : ?>
+    <?php if (!isset($_POST["titulo"])) : ?>
             <form method="post">
             <div class="row">
             <div class="login-form">
             <div class="main-div">
-                
                     <div class="form-group">
-
-
-                        <input type="text" class="form-control" name="user" placeholder="Usuario">
-
-                    </div>
-
-                    <div class="form-group">
-
-                        <input type="password" class="form-control" name="password" placeholder="Contraseña">
-
+                        <input type="text" class="form-control" name="titulo" placeholder="Título del libro">
                     </div>
                     <div class="form-group">
-
-                        <input type="text" class="form-control" name="nombre" placeholder="Nombre y apellidos">
-
+                        <input type="text" class="form-control" name="autor" placeholder="Autor del libro">
                     </div>
                     <div class="form-group">
-
-                        <input type="email" class="form-control" name="correo" placeholder="Correo">
-
+                        <input type="text" class="form-control" name="editorial" placeholder="Editorial del libro">
+                    </div>
+                    <div class="form-group">
+                        <input type="number" class="form-control" name="numpag" placeholder="Número de páginas">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="encuadernacion" placeholder="Encuadernación">
+                    </div>
+                    <div class="form-group">
+                        <input type="number" class="form-control" name="precio" placeholder="Precio (sin €)">
                     </div>
                     <button type="submit" class="btn btn-primary">Crear</button>
 
@@ -78,10 +73,10 @@ if (isset($_SESSION["user"]) && $_SESSION["user"]=="admin") { ?>
 
           //MAKING A SELECT QUERY
           //Password coded with md5 at the database. Look for better options
-          $consulta="INSERT into usuarios (user,password,nombre,correo,fecha_alta) values
-          ('$_POST[user]',md5('$_POST[password]'),'$_POST[nombre]','$_POST[correo]',curdate())";
+          $consulta="INSERT into libros (titulo,autor,editorial,numpag,encuadernacion,precio) values
+          ('$_POST[titulo]','$_POST[autor]','$_POST[editorial]','$_POST[numpag]','$_POST[encuadernacion]','$_POST[precio]')";
 
-          $consulta2="select * from usuarios where user='$_POST[user]'";
+          $consulta2="select * from libros where titulo='$_POST[titulo]'";
 
           //Test if the query was correct
           //SQL Injection Possible
@@ -91,12 +86,11 @@ if (isset($_SESSION["user"]) && $_SESSION["user"]=="admin") { ?>
               //No rows returned
               if ($result2->num_rows===0) {
                 if ($result1 = $connection->query($consulta)) {
-                    header("Location: mostrarusuarios.php");
+                    header("Location: mostrarlibros.php");
+                    
                 }
               } else {
-                    echo "<h1>Usuario ya registrado; ingrese otro usuario</h1>";
-                    header("refresh:3;url=crearusuarios.php");
-                
+                    header("Location: crearlibros.php");
               }
 
           } else {
