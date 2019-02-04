@@ -19,31 +19,30 @@ USE proyecto;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `Clientes`
+-- Table structure for table `Usuarios`
 --
 
-DROP TABLE IF EXISTS `clientes`;
+DROP TABLE IF EXISTS `usuarios`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `clientes` (
-  `codcliente` int(11) NOT NULL AUTO_INCREMENT,
-  `dni` char(9) NOT NULL,
+CREATE TABLE `usuarios` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user` varchar(45) NOT NULL,
+  `password` varchar(45) NOT NULL,
   `nombre` varchar(45) NOT NULL,
-  `apellidos` varchar(45) NOT NULL,
-  `direccion` varchar(255) DEFAULT NULL,
-  `telefono` int(11) DEFAULT NULL,
-  `codigo_postal` char(5) DEFAULT NULL,
-  PRIMARY KEY (`codcliente`)
+  `correo` varchar(45) NOT NULL,
+  `fecha_alta` date NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `Clientes`
+-- Dumping data for table `Usuarios`
 --
 
-LOCK TABLES `clientes` WRITE;
-/*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
-/*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
+LOCK TABLES `usuarios` WRITE;
+/*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
+/*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -54,7 +53,7 @@ DROP TABLE IF EXISTS `empleados`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `empleados` (
-  `codempleado` int(11) NOT NULL,
+  `codempleado` int(11) NOT NULL AUTO_INCREMENT,
   `dni` char(9) NOT NULL,
   `nombre` varchar(45) NOT NULL,
   `apellidos` varchar(45) NOT NULL,
@@ -112,12 +111,12 @@ DROP TABLE IF EXISTS `pedidos`;
 CREATE TABLE `pedidos` (
   `codpedido` int(11) NOT NULL AUTO_INCREMENT,
   `fechaentrega` varchar(45) NOT NULL,
-  `codcliente` int(11) DEFAULT NULL,
+  `id` int(11) DEFAULT NULL,
   `codempleado` int(11) DEFAULT NULL,
   PRIMARY KEY (`codpedido`),
-  KEY `fk_Pedidos_1_idx` (`codcliente`),
+  KEY `fk_Pedidos_1_idx` (`id`),
   KEY `fk_Pedidos_2_idx` (`codempleado`),
-  CONSTRAINT `fk_Pedidos_1` FOREIGN KEY (`codcliente`) REFERENCES `clientes` (`codcliente`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Pedidos_1` FOREIGN KEY (`id`) REFERENCES `usuarios` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_Pedidos_2` FOREIGN KEY (`codempleado`) REFERENCES `empleados` (`codempleado`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -161,29 +160,6 @@ UNLOCK TABLES;
 --
 -- Table structure for table `usuarios`
 --
-
-DROP TABLE IF EXISTS `usuarios`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `usuarios` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user` varchar(45) NOT NULL,
-  `password` varchar(45) NOT NULL,
-  `nombre` varchar(45) NOT NULL,
-  `correo` varchar(45) NOT NULL,
-  `fecha_alta` date NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `usuarios`
---
-
-LOCK TABLES `usuarios` WRITE;
-/*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-/*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -198,3 +174,8 @@ UNLOCK TABLES;
 INSERT INTO usuarios VALUES(1,"admin",md5("admin"),"Admin","admin@admin.com",curdate());
 
 alter table libros auto_increment=1;
+alter table empleados auto_increment=1;
+alter table pedidos auto_increment=1;
+
+insert into empleados (dni,nombre,apellidos,direccion,telefono,fechacontratacion) values("12345678M","Alejandro","Román Caballero","c/ Pocillo de Gilván, Sevilla", 123456789,"03/03/2003");
+insert into empleados (dni,nombre,apellidos,direccion,telefono,fechacontratacion) values("12345679M","Alex","Román","c/ Pocillo de Gilván", 123456788,"03/03/2005");

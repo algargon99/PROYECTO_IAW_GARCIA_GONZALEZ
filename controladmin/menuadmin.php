@@ -42,6 +42,15 @@
             <li><a href="../usuariosadmin/borrarusuarios.php">Borrar</a></li>
           </ul>
         </li>
+        <li class="dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navdrop" role="button" data-toggle="dropdown" data-hover="dropdown">Empleados<span class="caret"></span></a>          
+          <ul class="dropdown-menu">
+            <li><a href="../empleadosadmin/mostrarempleados.php">Mostrar</a></li>
+            <li><a href="../empleadosadmin/crearempleados.php">Crear</a></li>
+            <li><a href="../empleadosadmin/empleadoaeditar.php">Editar</a></li>
+            <li><a href="../empleadosadmin/borrarempleados.php">Borrar</a></li>
+          </ul>
+        </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="../controladmin/perfiladmin.php"><?php echo $_SESSION["user"] ?></a></li>
