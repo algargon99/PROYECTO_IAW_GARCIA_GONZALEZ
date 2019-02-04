@@ -179,3 +179,4 @@ alter table pedidos auto_increment=1;
 
 insert into empleados (dni,nombre,apellidos,direccion,telefono,fechacontratacion) values("12345678M","Alejandro","Román Caballero","c/ Pocillo de Gilván, Sevilla", 123456789,"03/03/2003");
 insert into empleados (dni,nombre,apellidos,direccion,telefono,fechacontratacion) values("12345679M","Alex","Román","c/ Pocillo de Gilván", 123456788,"03/03/2005");
+insert into empleados (dni,nombre,apellidos,direccion,telefono,fechacontratacion) values("12345678A","Alexa","Romana","c/ Pocillo", 123456768,"2003/03/05");
