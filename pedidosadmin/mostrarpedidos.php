@@ -66,9 +66,8 @@ if ($result = $connection->query("select * from pedidos;")) {
         echo "<tr>";
         echo "<td>".$obj->codpedido."</td>";
         echo "<td>".$obj->fechaentrega."</td>";
-        echo "<td>".$obj->codcliente."</td>";
+        echo "<td>".$obj->id."</td>";
         echo "<td>".$obj->codempleado."</td>";
-        echo "<td>".$obj->numpag."</td>";
         echo "<td><a href='pedido.php?cod=$obj->codpedido'>Datos del pedido</a></td>";
         echo "</tr>";
     }

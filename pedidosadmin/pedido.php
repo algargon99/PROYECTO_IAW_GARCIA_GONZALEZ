@@ -42,7 +42,10 @@ if ($connection->connect_errno) {
 
 //MAKING A SELECT QUERY
 /* Consultas de selección que devuelven un conjunto de resultados */
-if ($result = $connection->query("select * from pedidos where codpedido=$_GET[cod]")) {
+if ($result = $connection->query("select e.nombre n, e.apellidos a, u.user u, p.fechaentrega f from pedidos p
+join usuarios u on u.id=p.id
+join empleados e on e.codempleado = p.codempleado
+where codpedido=$_GET[cod]")) {
 
 
 ?>
@@ -56,10 +59,10 @@ if ($result = $connection->query("select * from pedidos where codpedido=$_GET[co
    $obj = $result->fetch_object();
         //PRINTING EACH ROW
         echo "<table class='table custab'";
-        echo "<tr><td><b>Código de Pedido: </b></td><td>$obj->codpedido</td></tr>";
-        echo "<tr><td><b>Fecha de Entrega: </b></td><td>$obj->fechaentrega</td></tr>";
-        echo "<tr><td><b>Código de Cliente: </b></td><td>$obj->codcliente</td></tr>";
-        echo "<tr><td><b>Código de Empleado : </b></td><td>$obj->codempleado</td></tr>";
+        echo "<tr><td><b>Código de Pedido: </b></td><td>$_GET[cod]</td></tr>";
+        echo "<tr><td><b>Fecha de Entrega: </b></td><td>$obj->f</td></tr>";
+        echo "<tr><td><b>Código de Usuario: </b></td><td>$obj->n $obj->a</td></tr>";
+        echo "<tr><td><b>Código de Empleado : </b></td><td>$obj->u</td></tr>";
         echo "</table>";
     
 
