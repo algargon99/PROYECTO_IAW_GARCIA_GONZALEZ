@@ -177,6 +177,11 @@ alter table libros auto_increment=1;
 alter table empleados auto_increment=1;
 alter table pedidos auto_increment=1;
 
-insert into empleados (dni,nombre,apellidos,direccion,telefono,fechacontratacion) values("12345678M","Alejandro","Román Caballero","c/ Pocillo de Gilván, Sevilla", 123456789,"03/03/2003");
-insert into empleados (dni,nombre,apellidos,direccion,telefono,fechacontratacion) values("12345679M","Alex","Román","c/ Pocillo de Gilván", 123456788,"03/03/2005");
+insert into libros (titulo,autor,editorial,numpag,encuadernacion,precio) values ("El principito","Antoine de Saint-Exupéry","Salamanca",50,"Anillas",10);
+insert into libros (titulo,autor,editorial,numpag,encuadernacion,precio) values ("Blancanieves y los Siete Enanitos","Jacob Grimm","Salamanca",150,"Cartona",15);
+insert into libros (titulo,autor,editorial,numpag,encuadernacion,precio) values ("Charlie y la Fabrica de chocolate","Roald Dahl","Santillana",231,"Cartone",12.50);
+
+
+insert into empleados (dni,nombre,apellidos,direccion,telefono,fechacontratacion) values("12345678M","Alejandro","Roman Caballero","c/ Pocillo de Gilvan, Sevilla", 123456789,"03/03/2003");
+insert into empleados (dni,nombre,apellidos,direccion,telefono,fechacontratacion) values("12345679M","Alex","Roman","c/ Pocillo de Gilvan", 123456788,"03/03/2005");
 insert into empleados (dni,nombre,apellidos,direccion,telefono,fechacontratacion) values("12345678A","Alexa","Romana","c/ Pocillo", 123456768,"2003/03/05");
