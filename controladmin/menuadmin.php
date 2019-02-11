@@ -9,7 +9,7 @@
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-      <a class="navbar-brand" href="principal.php">BookFace</a>
+      <a class="navbar-brand" href="../controladmin/principal.php">BookFace</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -54,7 +54,8 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="../controladmin/perfiladmin.php"><?php echo $_SESSION["user"] ?></a></li>
-        <li id="boton"><?php 
+        <li id="boton">
+        <?php 
         
         if (!isset($_POST["cerrar"])) : ?>
         <form method="post">
