@@ -172,6 +172,8 @@ UNLOCK TABLES;
 
 -- Dump completed on 2019-01-14 10:18:14
 INSERT INTO usuarios VALUES(1,"admin",md5("admin"),"Admin","admin@admin.com",curdate());
+INSERT INTO usuarios VALUES(2,"user",md5("user"),"Usuario","user@user.com",curdate());
+
 
 alter table libros auto_increment=1;
 alter table empleados auto_increment=1;
@@ -186,6 +188,6 @@ insert into empleados (dni,nombre,apellidos,direccion,telefono,fechacontratacion
 insert into empleados (dni,nombre,apellidos,direccion,telefono,fechacontratacion) values("12345679M","Alex","Roman","c/ Pocillo de Gilvan", 123456788,"03/03/2005");
 insert into empleados (dni,nombre,apellidos,direccion,telefono,fechacontratacion) values("12345678A","Alexa","Romana","c/ Pocillo", 123456768,"2003/03/05");
 
-insert into pedidos (fechaentrega,id,codempleado) values (date_add(curdate(), interval 20 day),2,1);
-insert into pedidos (fechaentrega,id,codempleado) values (date_add(curdate(), interval 20 day),1,2);
-insert into pedidos (fechaentrega,id,codempleado) values (date_add(curdate(), interval 20 day),2,2);
+insert into pedidos (fechaentrega,id,codempleado) values (date_add(curdate(), interval 1 day),2,1);
+insert into pedidos (fechaentrega,id,codempleado) values (date_add(curdate(), interval 1 day),1,2);
+insert into pedidos (fechaentrega,id,codempleado) values (date_add(curdate(), interval 1 day),2,2);

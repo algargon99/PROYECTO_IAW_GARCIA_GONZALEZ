@@ -1,6 +1,6 @@
 <?php session_start();
 
-if (isset($_SESSION["user"]) && $_SESSION["user"]=="admin") { ?>
+if (isset($_SESSION["user"]) && $_SESSION["user"]!="admin") { ?>
 
 
 <!DOCTYPE html>
@@ -19,7 +19,7 @@ if (isset($_SESSION["user"]) && $_SESSION["user"]=="admin") { ?>
 </head>
     <body>
         <div>
-        <?php include_once("menuadmin.php"); ?>
+        <?php include_once("menuuser.php"); ?>
         </div>
         <div class="row">
             <div class="col-md-3"></div>
@@ -47,7 +47,7 @@ if (isset($_SESSION["user"]) && $_SESSION["user"]=="admin") { ?>
                         //PRINTING EACH ROW
 
                         echo "<table class='table custab'";
-                        echo "<tr><td><b>Id de usuario: </b></td><td>$obj->id</td></tr>";
+                        echo "<tr><td><b>Número de usuario: </b></td><td>$obj->id</td></tr>";
                         echo "<tr><td><b>Nombre de usuario: </b></td><td>$obj->user</td></tr>";
                         echo "<tr><td><b>Nombre: </b></td><td>$obj->nombre</td></tr>";
                         echo "<tr><td><b>Correo: </b></td><td>$obj->correo</td></tr>";

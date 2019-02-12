@@ -121,7 +121,7 @@ if (isset($_SESSION["user"]) && $_SESSION["user"]=="admin") { ?>
           //MAKING A SELECT QUERY
           //Password coded with md5 at the database. Look for better options
           $consulta="INSERT into pedidos (fechaentrega,id,codempleado) values
-          (date_add(curdate(), interval 20 day),'$_POST[usuario]','$_POST[empleado]')";
+          (date_add(curdate(), interval 1 day),'$_POST[usuario]','$_POST[empleado]')";
 
           //Test if the query was correct
           //SQL Injection Possible

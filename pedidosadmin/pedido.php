@@ -61,8 +61,8 @@ where codpedido=$_GET[cod]")) {
         echo "<table class='table custab'";
         echo "<tr><td><b>Código de Pedido: </b></td><td>$_GET[cod]</td></tr>";
         echo "<tr><td><b>Fecha de Entrega: </b></td><td>$obj->f</td></tr>";
-        echo "<tr><td><b>Código de Usuario: </b></td><td>$obj->n $obj->a</td></tr>";
-        echo "<tr><td><b>Código de Empleado : </b></td><td>$obj->u</td></tr>";
+        echo "<tr><td><b>Usuario: </b></td><td>$obj->n $obj->a</td></tr>";
+        echo "<tr><td><b>Empleado : </b></td><td>$obj->u</td></tr>";
         echo "</table>";
     
 

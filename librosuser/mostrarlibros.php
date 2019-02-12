@@ -1,5 +1,3 @@
-<?php ob_start(); ?>
-
 <html>
 <head>
     <meta charset="utf-8" />
@@ -17,11 +15,11 @@
 <body>
 <?php session_start();
 
-if (isset($_SESSION["user"]) && $_SESSION["user"]=="admin") {
+if (isset($_SESSION["user"]) && $_SESSION["user"]!="admin") {
 ?>
 <div class="row">
         <div>
-        <?php include_once "../controladmin/menuadmin.php"?>
+        <?php include_once "../controluser/menuuser.php"?>
         </div>
     </div>
     <div class="row">
@@ -32,7 +30,7 @@ if (isset($_SESSION["user"]) && $_SESSION["user"]=="admin") {
 //Open the session
 
 //CREATING THE CONNECTION
-$connection = new mysqli("localhost", "root", "123456", "proyecto");
+$connection = new mysqli("localhost", "user", "2asirtriana", "proyecto");
 $connection->set_charset("utf8");
 
 //TESTING IF THE CONNECTION WAS RIGHT
@@ -43,7 +41,7 @@ if ($connection->connect_errno) {
 
 //MAKING A SELECT QUERY
 /* Consultas de selección que devuelven un conjunto de resultados */
-if ($result = $connection->query("select * from usuarios;")) {
+if ($result = $connection->query("select * from libros;")) {
 
 
 
@@ -52,11 +50,13 @@ if ($result = $connection->query("select * from usuarios;")) {
     ?>
     <thead>
       <tr>
-        <th>Id</th>
-        <th>Usuario</th>
-        <th>Nombre</th>
-        <th>Correo</th>
-        <th>Fecha Alta</th>      
+        <th>ISBN</th>
+        <th>Título</th>
+        <th>Autor</th>
+        <th>Editorial</th>
+        <th>Número de páginas</th>
+        <th>Encuadernación</th>      
+        <th>Precio</th>            
        </tr>
     </thead>
 
@@ -67,13 +67,14 @@ if ($result = $connection->query("select * from usuarios;")) {
     while($obj = $result->fetch_object()) {
         //PRINTING EACH ROW
         echo "<tr>";
-        echo "<td>".$obj->id."</td>";
-        echo "<td>".$obj->user."</td>";
-        echo "<td>".$obj->nombre."</td>";
-        echo "<td>".$obj->correo."</td>";
-        echo "<td>".$obj->fecha_alta."</td>";
-        echo "<td><a href='usuario.php?cod=$obj->id'>Datos del usuario</a></td>";
-
+        echo "<td>".$obj->isbn."</td>";
+        echo "<td>".$obj->titulo."</td>";
+        echo "<td>".$obj->autor."</td>";
+        echo "<td>".$obj->editorial."</td>";
+        echo "<td>".$obj->numpag."</td>";
+        echo "<td>".$obj->encuadernacion."</td>";
+        echo "<td>".$obj->precio." €</td>";
+        echo "<td><a href='libro.php?cod=$obj->isbn'>Datos del libro</a></td>";
         echo "</tr>";
     }
 

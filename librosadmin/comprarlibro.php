@@ -1,6 +1,7 @@
 <?php session_start();
 
 if (isset($_SESSION["user"]) && $_SESSION["user"]=="admin") { ?>
+<?php ob_start(); ?>
 
 <!DOCTYPE html>
 <html>
@@ -29,7 +30,8 @@ if (isset($_SESSION["user"]) && $_SESSION["user"]=="admin") { ?>
             $connection = new mysqli("localhost", "root", "123456", "proyecto");
             $connection->set_charset("utf8");
             
-            //TESTING IF THE CONNECTION WAS RIGHT
+            //TESTING ,
+            //IF THE CONNECTION WAS RIGHT
             if ($connection->connect_errno) {
                 printf("Connection failed: %s\n", $connection->connect_error);
                 exit();
@@ -48,10 +50,8 @@ if (isset($_SESSION["user"]) && $_SESSION["user"]=="admin") { ?>
                     $obj = $result->fetch_object();
                     //PRINTING EACH ROW
                     echo "<h2>Comprar libro <i>".$obj->titulo."</i></h2><br>";
-                    echo "<center><h3>".$obj->titulo."</h3></center>";
-                    echo "<center><h4>".$obj->autor."</h4></center>";
                     echo "<center><h4>Precio: ".$obj->precio." €</h4></center>";
-                    echo "<center>Cantidad: <input type='number' value='1' id ='quantity'></center><br>";
+                    echo "<center>Cantidad: <input type='number' value='1' id='quantity'></center><br>";
                     echo "<center><a href='../carrito/add_to_cart.php?isbn=$_GET[cod]' id='button'>Añadir al carrito</a><br><br>";
 
             
@@ -77,11 +77,16 @@ if (isset($_SESSION["user"]) && $_SESSION["user"]=="admin") { ?>
         $("#quantity").text(0);
         $("#button").click(function(event) {
           //event.preventDefault();
+          console.log(v$("#quantity").val());
           $.ajax({
             url: $(this).attr("href"),
+            type: "get",
+            data: [ "q" = $("#quantity").val()]
+            }
           }).done(function(data) {
              if (data=="OK") {
                $("#quantity").text(parseInt($("#quantity").text())+1);
+               alert("HOLA");
              } else {
                alert("Something went wrong!!!"+data);
              }

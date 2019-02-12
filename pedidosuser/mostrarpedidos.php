@@ -1,5 +1,3 @@
-<?php ob_start(); ?>
-
 <html>
 <head>
     <meta charset="utf-8" />
@@ -17,11 +15,11 @@
 <body>
 <?php session_start();
 
-if (isset($_SESSION["user"]) && $_SESSION["user"]=="admin") {
+if (isset($_SESSION["user"]) && $_SESSION["user"]!="admin") {
 ?>
 <div class="row">
         <div>
-        <?php include_once "../controladmin/menuadmin.php"?>
+        <?php include_once "../controluser/menuuser.php"?>
         </div>
     </div>
     <div class="row">
@@ -32,7 +30,7 @@ if (isset($_SESSION["user"]) && $_SESSION["user"]=="admin") {
 //Open the session
 
 //CREATING THE CONNECTION
-$connection = new mysqli("localhost", "root", "123456", "proyecto");
+$connection = new mysqli("localhost", "user", "2asirtriana", "proyecto");
 $connection->set_charset("utf8");
 
 //TESTING IF THE CONNECTION WAS RIGHT
@@ -43,7 +41,7 @@ if ($connection->connect_errno) {
 
 //MAKING A SELECT QUERY
 /* Consultas de selección que devuelven un conjunto de resultados */
-if ($result = $connection->query("select * from usuarios;")) {
+if ($result = $connection->query("select * from pedidos p join usuarios u on p.id=u.id where user='$_SESSION[user]' ;")) {
 
 
 
@@ -52,11 +50,10 @@ if ($result = $connection->query("select * from usuarios;")) {
     ?>
     <thead>
       <tr>
-        <th>Id</th>
-        <th>Usuario</th>
-        <th>Nombre</th>
-        <th>Correo</th>
-        <th>Fecha Alta</th>      
+        <th>Codigo de Pedido</th>
+        <th>Fecha de Entrega</th>
+        <th>Codigo de Cliente</th>
+        <th>Codigo de Empleado</th>           
        </tr>
     </thead>
 
@@ -67,13 +64,11 @@ if ($result = $connection->query("select * from usuarios;")) {
     while($obj = $result->fetch_object()) {
         //PRINTING EACH ROW
         echo "<tr>";
+        echo "<td>".$obj->codpedido."</td>";
+        echo "<td>".$obj->fechaentrega."</td>";
         echo "<td>".$obj->id."</td>";
-        echo "<td>".$obj->user."</td>";
-        echo "<td>".$obj->nombre."</td>";
-        echo "<td>".$obj->correo."</td>";
-        echo "<td>".$obj->fecha_alta."</td>";
-        echo "<td><a href='usuario.php?cod=$obj->id'>Datos del usuario</a></td>";
-
+        echo "<td>".$obj->codempleado."</td>";
+        echo "<td><a href='pedido.php?cod=$obj->codpedido'>Datos del pedido</a></td>";
         echo "</tr>";
     }
 
