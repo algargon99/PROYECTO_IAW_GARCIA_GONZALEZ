@@ -65,7 +65,7 @@
             <div class="login-form col-md-12">
                 <div class="main-div">
                     <div class="panel">
-                <h2>Inicio de Sesión de USUARIOS</h2>
+                <h2>Inicio de Sesión</h2>
                 <p>Introduce tu usuario y contraseña</p>
                 </div>
                     <form  method="post" id="Login">
