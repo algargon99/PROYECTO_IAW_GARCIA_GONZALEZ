@@ -52,7 +52,7 @@ if (isset($_SESSION["user"]) && $_SESSION["user"]=="admin") { ?>
                     echo "<h2>Comprar libro <i>".$obj->titulo."</i></h2><br>";
                     echo "<center><h4>Precio: ".$obj->precio." €</h4></center>";
                     echo "<center>Cantidad: <input type='number' value='1' id='quantity'></center><br>";
-                    echo "<center><a href='../carrito/add_to_cart.php?isbn=$_GET[cod]' id='button'>Añadir al carrito</a><br><br>";
+                    echo "<center><a href='' id='button'>Añadir al carrito</a><br><br>";
 
             
                 //Free the result. Avoid High Memory Usages
@@ -76,21 +76,25 @@ if (isset($_SESSION["user"]) && $_SESSION["user"]=="admin") { ?>
      $(function() {
         $("#quantity").text(0);
         $("#button").click(function(event) {
-          //event.preventDefault();
-          console.log(v$("#quantity").val());
+          event.preventDefault();
+          console.log($("#quantity").val());
+          var libro = <?php echo $_GET['cod']?>;
+          console.log("LIBRO ISBN: "+libro);          
+          var cantidad = $("#quantity").val();
+          console.log("CANTIDAD : "+cantidad);
+          
+          var url = "../carrito/add_to_cart.php"+"?q="+cantidad+"&isbn="+libro;
+ 
+
           $.ajax({
-            url: $(this).attr("href"),
+            url: url,
             type: "get",
-            data: [ "q" = $("#quantity").val()]
+            data: {
+              "q" : cantidad,
+              "isbn": libro
             }
           }).done(function(data) {
-             if (data=="OK") {
-               $("#quantity").text(parseInt($("#quantity").text())+1);
-               alert("HOLA");
-             } else {
-               alert("Something went wrong!!!"+data);
-             }
-
+            console.log(data);
           });
         });
      });

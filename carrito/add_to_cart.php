@@ -1,11 +1,8 @@
 <?php
  session_start();
-
-var_dump($_GET);
-//$_SESSION['cart']['isbn']='q';
-
- var_dump($_SESSION['cart']);
+$_SESSION["cart"][$_GET['q']]=$_GET['isbn'];
  
-echo $_GET["q"];
+//echo "CANTIDAD: ".$_GET['q']." LIBRO: ".$_GET['isbn'];
   
+echo $_SESSION["cart"];
 ?>
