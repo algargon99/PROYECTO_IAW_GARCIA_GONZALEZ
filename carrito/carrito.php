@@ -25,19 +25,39 @@ if (isset($_SESSION["user"]) && $_SESSION["user"]=="admin") {
     <div class="row">
     <div class="col-md-2"></div>
     <div class="col-md-8" style='background-color: white; border-radius:10px;'>
+
      <?php if (isset($_SESSION["cart"])) { ?>   
-    <table class='table custab' style='background-color: white; border-radius:10px;'>
+        
+    <table class='table custab'>
     
         <thead>
             <tr>
                 <th>Título</th>
-                <th>Cantidad</th>            
+                <th>Precio</th>
+                <th>Cantidad</th>
+                <th>Precio por nombre de libro</th>
+     
             </tr>
         </thead>
         <tbody>
             <?php
                 foreach ($_SESSION["cart"] as $k => $v) {
-                    echo "<td>".$k."</td><td>".$v."</td>";
+                    
+                    $connection = new mysqli("localhost", "root", "123456", "proyecto");
+                    $connection->set_charset("utf8");
+
+                    if ($connection->connect_errno) {
+                        printf("Connection failed: %s\n", $connection->connect_error);
+                        exit();
+                    }
+                    if ($result = $connection->query("select * from libros where isbn=$k;")) {
+                        $obj = $result->fetch_object();
+                            echo "<tr><td>".$obj->titulo."</td><td>".$obj->precio."€</td><td>".$v."</td><td>".$obj->precio*$v."</td></tr>";
+                    $result->close();
+                    unset($obj);
+                    unset($connection);
+                
+                }
                 }
             ?>
         </tbody>
