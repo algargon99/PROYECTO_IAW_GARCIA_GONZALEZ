@@ -77,11 +77,11 @@ if (isset($_SESSION["user"]) && $_SESSION["user"]=="admin") { ?>
         $("#quantity").text(0);
         $("#button").click(function(event) {
           event.preventDefault();
-          console.log($("#quantity").val());
+          //console.log($("#quantity").val());
           var libro = <?php echo $_GET['cod']?>;
-          console.log("LIBRO ISBN: "+libro);          
+          //console.log("LIBRO ISBN: "+libro);          
           var cantidad = $("#quantity").val();
-          console.log("CANTIDAD : "+cantidad);
+          //console.log("CANTIDAD : "+cantidad);
           
           var url = "../carrito/add_to_cart.php"+"?q="+cantidad+"&isbn="+libro;
  
