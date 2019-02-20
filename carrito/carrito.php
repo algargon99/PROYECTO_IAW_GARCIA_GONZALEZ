@@ -27,7 +27,7 @@ if (isset($_SESSION["user"]) && $_SESSION["user"]=="admin") {
     <div class="col-md-8" style='background-color: white; border-radius:10px;'>
 
      <?php if (isset($_SESSION["cart"])) { ?>   
-        
+    <form action="compra.php" method="post">    
     <table class='table custab'>
     
         <thead>
@@ -52,7 +52,7 @@ if (isset($_SESSION["user"]) && $_SESSION["user"]=="admin") {
                     }
                     if ($result = $connection->query("select * from libros where isbn=$k;")) {
                         $obj = $result->fetch_object();
-                            echo "<tr><td>".$obj->titulo."</td><td>".$obj->precio."€</td><td>".$v."</td><td>".$obj->precio*$v."</td></tr>";
+                            echo "<tr><td>".$obj->titulo."</td><td>".$obj->precio."€</td><td>".$v."</td><td>".$obj->precio*$v."€</td></tr>";
                     $result->close();
                     unset($obj);
                     unset($connection);
@@ -61,9 +61,13 @@ if (isset($_SESSION["user"]) && $_SESSION["user"]=="admin") {
                 }
             ?>
         </tbody>
-    </table> 
+    </table>
+    <div class="text-right">  
+    <input type="submit" class="btn" id="compra" name="compra" value="Comprar todo">
+    </div>
+    </form>
     <?php } else{ ?>
-                <h2>No tienes ningún libro en tu carrito</h2>
+                <center><h2>Tu carrito está vacio</h2></center>
     <?php
     }
     } else {

@@ -111,6 +111,7 @@ DROP TABLE IF EXISTS `pedidos`;
 CREATE TABLE `pedidos` (
   `codpedido` int(11) NOT NULL AUTO_INCREMENT,
   `fechaentrega` varchar(45) NOT NULL,
+  `preciototal` int(13) NOT NULL,
   `id` int(11) DEFAULT NULL,
   `codempleado` int(11) DEFAULT NULL,
   PRIMARY KEY (`codpedido`),
