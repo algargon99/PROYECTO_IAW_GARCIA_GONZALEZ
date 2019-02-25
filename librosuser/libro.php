@@ -65,7 +65,9 @@ if ($result = $connection->query("select * from libros where isbn='$_GET[cod]'")
         echo "<tr><td><b>Precio: </b></td><td>$obj->precio €</td></tr>";
         echo "</table>";
     
-    echo "<a href='comprarlibro.php?cod=$obj->isbn'>Comprar</a>";
+        echo "<div class='text-right'>";
+        echo "<a class='btn btn-primary' id='comprar' href='comprarlibro.php?cod=$obj->isbn'>Comprar</a>";
+    echo "</div>";
     //Free the result. Avoid High Memory Usages
     $result->close();
     unset($obj);

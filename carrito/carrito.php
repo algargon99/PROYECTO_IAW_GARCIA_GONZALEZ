@@ -63,7 +63,7 @@ if (isset($_SESSION["user"]) && $_SESSION["user"]=="admin") {
         </tbody>
     </table>
     <div class="text-right">  
-    <input type="submit" class="btn" id="compra" name="compra" value="Comprar todo">
+    <input type="submit" class="btn" name="compra" value="Comprar todo">
     </div>
     </form>
     <?php } else{ ?>

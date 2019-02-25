@@ -4,3 +4,10 @@ body{
     background-size: 100%;
     background-repeat: no-repeat;
     padding:10px;}
+
+
+    #comprar{
+        background-color: green;
+        border-color: gray;
+        margin-bottom: 10px; 
+    }

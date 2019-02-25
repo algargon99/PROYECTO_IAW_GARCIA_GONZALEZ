@@ -41,9 +41,11 @@
               if ($result->num_rows===0) { 
                 echo "<script type='text/javascript'>alert('Login Inválido');</script>";
               } else {
+                $obj = $result->fetch_object();
                 //VALID LOGIN. SETTING SESSION VARS
                 $_SESSION["user"]=$_POST["user"];
                 $_SESSION["language"]="es";
+                $_SESSION["id"]=$obj->id;
 
                 
                 
