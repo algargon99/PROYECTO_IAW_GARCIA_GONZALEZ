@@ -46,6 +46,7 @@
                 $_SESSION["user"]=$_POST["user"];
                 $_SESSION["language"]="es";
                 $_SESSION["id"]=$obj->id;
+                $_SESSION["cart"]=[];
 
                 
                 

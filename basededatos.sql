@@ -117,8 +117,8 @@ CREATE TABLE `pedidos` (
   PRIMARY KEY (`codpedido`),
   KEY `fk_Pedidos_1_idx` (`id`),
   KEY `fk_Pedidos_2_idx` (`codempleado`),
-  CONSTRAINT `fk_Pedidos_1` FOREIGN KEY (`id`) REFERENCES `usuarios` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Pedidos_2` FOREIGN KEY (`codempleado`) REFERENCES `empleados` (`codempleado`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_Pedidos_1` FOREIGN KEY (`id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_Pedidos_2` FOREIGN KEY (`codempleado`) REFERENCES `empleados` (`codempleado`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -144,8 +144,8 @@ CREATE TABLE `tienen` (
   `isbn` int(13) NOT NULL,
   KEY `fk_Tienen_1_idx` (`isbn`),
   KEY `fk_Tienen_2_idx` (`codpedido`),
-  CONSTRAINT `fk_Tienen_1` FOREIGN KEY (`isbn`) REFERENCES `libros` (`isbn`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Tienen_2` FOREIGN KEY (`codpedido`) REFERENCES `pedidos` (`codpedido`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_Tienen_1` FOREIGN KEY (`isbn`) REFERENCES `libros` (`isbn`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_Tienen_2` FOREIGN KEY (`codpedido`) REFERENCES `pedidos` (`codpedido`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 

@@ -7,4 +7,5 @@ foreach ($_SESSION["cart"] as $k => $v) {
     echo $k ."->".$v;
     echo "<br>";
 } 
+
 ?>

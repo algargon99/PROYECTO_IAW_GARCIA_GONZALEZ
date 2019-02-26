@@ -28,6 +28,7 @@ ob_start(); ?>
     <?php
     
         
+
         $connection = new mysqli("localhost", "root", "123456", "proyecto");
         $connection->set_charset("utf8");
 
@@ -38,31 +39,31 @@ ob_start(); ?>
         
    
             $query1="INSERT into pedidos (fechaentrega,id) values (date_add(curdate(), interval 1 day),'$_SESSION[id]')";
-            
             if ($result1=$connection->query($query1)) {
             
+                $pedido = $connection->insert_id;
+
                 foreach ($_SESSION["cart"] as $k => $v) {
             
-                    $query2="INSERT into tienen values ($v,$connection->insert_id,$k)";
-                    if ($result2=$connection->query($query1)) {
+                    $query2="INSERT into tienen values ($v,$pedido,$k)";
+                    if ($result2=$connection->query($query2)) {
+                        
                     }
                 }
             }
         
-        
-        $result1->close();
-        $result2->close();
+        $_SESSION["cart"]=[];
+     
 
         unset($obj);
         unset($connection);
 
         if (isset($_SESSION["user"]) && $_SESSION["user"]=="admin") {
-        
-        header("Location: ../controladmin/principal.php");
+            header("Location: ../controladmin/principal.php");
         }
 
         else {
-            header("Location: ../controluser/principal.php");
+            header("Location: ../controluser/principalusuario.php");
         }
 ?>
 

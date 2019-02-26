@@ -15,19 +15,22 @@
 <body>
 <?php session_start();
 
-if (isset($_SESSION["user"]) && $_SESSION["user"]=="admin") {
+if (isset($_SESSION["user"])&&$_SESSION["user"]!="admin") {
 ?>
 <div class="row">
         <div>
-        <?php include_once "../controladmin/menuadmin.php"?>
+        <?php include_once "../controluser/menuuser.php"?>
         </div>
     </div>
     <div class="row">
     <div class="col-md-2"></div>
     <div class="col-md-8" style='background-color: white; border-radius:10px;'>
 
-     <?php if (isset($_SESSION["cart"])) { ?>   
-    <form action="compra.php" method="post">    
+     <?php 
+     
+     if (isset($_SESSION["cart"]) && $_SESSION["cart"]!=[]) { ?>   
+    <form action="compra.php" method="post"> 
+    
     <table class='table custab'>
     
         <thead>
@@ -36,14 +39,16 @@ if (isset($_SESSION["user"]) && $_SESSION["user"]=="admin") {
                 <th>Precio</th>
                 <th>Cantidad</th>
                 <th>Precio por nombre de libro</th>
+
      
             </tr>
         </thead>
         <tbody>
             <?php
+
                 foreach ($_SESSION["cart"] as $k => $v) {
                     
-                    $connection = new mysqli("localhost", "root", "123456", "proyecto");
+                    $connection = new mysqli("localhost", "user", "2asirtriana", "proyecto");
                     $connection->set_charset("utf8");
 
                     if ($connection->connect_errno) {
@@ -52,7 +57,9 @@ if (isset($_SESSION["user"]) && $_SESSION["user"]=="admin") {
                     }
                     if ($result = $connection->query("select * from libros where isbn=$k;")) {
                         $obj = $result->fetch_object();
+                            $query2="INSERT into tienen values ($v,$connection->insert_id,$k)";
                             echo "<tr><td>".$obj->titulo."</td><td>".$obj->precio."€</td><td>".$v."</td><td>".$obj->precio*$v."€</td></tr>";
+
                     $result->close();
                     unset($obj);
                     unset($connection);

@@ -54,7 +54,8 @@
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="../carrito/carrito.php"><img id="carrito" src="../CSS/carrito.png" ></a></li>
+        <li id="contador"><b><?php echo sizeof($_SESSION["cart"]) ?></b></li>
+        <li><a href="../carritoadmin/carrito.php"><img id="carrito" src="../CSS/carrito.png" ></a></li>
         <li><a href="../controladmin/perfiladmin.php"><?php echo $_SESSION["user"] ?></a></li>
         <li id="boton">
         <?php 

@@ -1,6 +1,6 @@
 <?php session_start();
 
-if (isset($_SESSION["user"]) && $_SESSION["user"]=="admin") { ?>
+if (isset($_SESSION["user"]) && $_SESSION["user"]!="admin") { ?>
 <?php ob_start(); ?>
 
 <!DOCTYPE html>
@@ -27,7 +27,7 @@ if (isset($_SESSION["user"]) && $_SESSION["user"]=="admin") { ?>
      <div class="col-md-4"></div>
      <div class="col-md-4" style='background-color: white; border-radius:10px;'>
         <?php
-            $connection = new mysqli("localhost", "root", "123456", "proyecto");
+            $connection = new mysqli("localhost", "user", "2asirtriana", "proyecto");
             $connection->set_charset("utf8");
             
             //TESTING ,
@@ -52,7 +52,7 @@ if (isset($_SESSION["user"]) && $_SESSION["user"]=="admin") { ?>
                     echo "<h2>Comprar libro <i>".$obj->titulo."</i></h2><br>";
                     echo "<center><h4>Precio: ".$obj->precio." €</h4></center>";
                     echo "<center>Cantidad: <input type='number' value='1' id='quantity'></center><br>";
-                    echo "<center><a href='comprarlibro.php' id='button'>Añadir al carrito</a><br><br>";
+                    echo "<center><a href='' id='button'>Añadir al carrito</a><br><br>";
 
             
                 //Free the result. Avoid High Memory Usages
