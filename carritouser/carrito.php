@@ -15,7 +15,7 @@
 <body>
 <?php session_start();
 
-if (isset($_SESSION["user"])&&$_SESSION["user"]!="admin") {
+if (isset($_SESSION["user"]) && $_SESSION["user"]!="admin") {
 ?>
 <div class="row">
         <div>
