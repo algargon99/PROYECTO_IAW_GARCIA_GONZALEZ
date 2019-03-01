@@ -70,7 +70,7 @@ if ($result = $connection->query("select * from libros;")) {
         echo "<td>".$obj->numpag."</td>";
         echo "<td>".$obj->encuadernacion."</td>";
         echo "<td>".$obj->precio." €</td>";
-        echo "<td><a href='editarlibros.php?isbn=$obj->isbn&titulo=$obj->titulo&autor=$obj->autor&editorial=$obj->editorial&numpag=$obj->numpag&encuadernacion=$obj->encuadernacion&precio=$obj->precio'>Editar libro</a></td>";
+        echo "<td><a href='editarlibros.php?isbn=$obj->isbn&titulo=$obj->titulo&autor=$obj->autor&editorial=$obj->editorial&numpag=$obj->numpag&encuadernacion=$obj->encuadernacion&precio=$obj->precio&rutaimagen=$obj->rutaimagen'>Editar libro</a></td>";
 
         echo "</tr>";
     }

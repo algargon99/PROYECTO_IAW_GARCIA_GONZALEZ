@@ -56,7 +56,9 @@ if ($result = $connection->query("select * from libros;")) {
         <th>Editorial</th>
         <th>Número de páginas</th>
         <th>Encuadernación</th>      
-        <th>Precio</th>            
+        <th>Precio</th>
+       <?php // <th>Ruta imagen</th>   ?>         
+            
        </tr>
     </thead>
 
@@ -74,6 +76,7 @@ if ($result = $connection->query("select * from libros;")) {
         echo "<td>".$obj->numpag."</td>";
         echo "<td>".$obj->encuadernacion."</td>";
         echo "<td>".$obj->precio." €</td>";
+    //    echo "<td>".$obj->rutaimagen."</td>";
         echo "<td><a href='libro.php?cod=$obj->isbn'>Datos del libro</a></td>";
         echo "</tr>";
     }

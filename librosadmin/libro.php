@@ -53,8 +53,20 @@ if ($result = $connection->query("select * from libros where isbn='$_GET[cod]'")
 
     //FETCHING OBJECTS FROM THE RESULT SET
     //THE LOOP CONTINUES WHILE WE HAVE ANY OBJECT (Query Row) LEFT
-   $obj = $result->fetch_object();
-        //PRINTING EACH ROW
+   $obj = $result->fetch_object(); ?>
+       
+       <div class="row">
+        <div class="col-md-4">
+         <?php
+         
+         echo "<img style='margin-top:15px;width:250px;height:250px;' src='$obj->rutaimagen'>";
+
+         ?>
+        </div>
+        <div class="col-md-8">
+
+       
+       <?php
         echo "<table class='table custab'";
         echo "<tr><td><b>ISBN: </b></td><td>$obj->isbn</td></tr>";
         echo "<tr><td><b>Título del libro: </b></td><td>$obj->titulo</td></tr>";
@@ -64,8 +76,10 @@ if ($result = $connection->query("select * from libros where isbn='$_GET[cod]'")
         echo "<tr><td><b>Encuadernación: </b></td><td>$obj->encuadernacion</td></tr>";
         echo "<tr><td><b>Precio: </b></td><td>$obj->precio €</td></tr>";
         echo "</table>";
-        
-    echo "<div class='text-right'>";
+        echo "</div>";
+        echo "</div>";
+
+        echo "<div class='text-right'>";
         echo "<a class='btn btn-primary' id='comprar' href='comprarlibro.php?cod=$obj->isbn'>Comprar</a>";
     echo "</div>";
     
