@@ -25,7 +25,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li id="contador"><?php echo sizeof($_SESSION["cart"])?></li>
-        <li><a href="../carritouser/carrito.php"><img id="carrito" src="../CSS/carrito.png" ></a></li>
+        <li><a href="../carrito/carrito.php"><img id="carrito" src="../CSS/carrito.png" ></a></li>
         <li><a href="../controluser/perfiluser.php"><?php echo $_SESSION["user"] ?></a></li>
         <li id="boton">
         <?php 

@@ -21,7 +21,7 @@ if (isset($_SESSION["user"]) && $_SESSION["user"]!="admin") { ?>
 </head>
 <body>
 <div class="row">
-<?php include_once "../controladmin/menuadmin.php" ?>
+<?php include_once "../controluser/menuuser.php" ?>
 </div>
 <div class="row">
      <div class="col-md-4"></div>
