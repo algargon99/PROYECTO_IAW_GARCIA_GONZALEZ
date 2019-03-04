@@ -27,20 +27,15 @@ if (isset($_SESSION["user"]) && $_SESSION["user"]!="admin") {
     <div class="col-md-8">
 <?php
 
-//Open the session
-
-//CREATING THE CONNECTION
 $connection = new mysqli("localhost", "user", "2asirtriana", "proyecto");
 $connection->set_charset("utf8");
 
-//TESTING IF THE CONNECTION WAS RIGHT
 if ($connection->connect_errno) {
     printf("Connection failed: %s\n", $connection->connect_error);
     exit();
 }
 
-//MAKING A SELECT QUERY
-/* Consultas de selección que devuelven un conjunto de resultados */
+
 $query="select * from pedidos p join usuarios u on p.id=u.id where user='$_SESSION[user]'";
 $query1="select count(*) cantidad from pedidos p join usuarios u on p.id=u.id where user='$_SESSION[user]'";
 

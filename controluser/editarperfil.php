@@ -20,10 +20,10 @@
   //Open the session
   session_start();
 
-  if (isset($_SESSION["user"]) && $_SESSION["user"]=="admin") { ?>
+  if (isset($_SESSION["user"]) && $_SESSION["user"]!="admin") { ?>
     <div class="row">
         <div>
-        <?php include_once "../controladmin/menuadmin.php"?>
+        <?php include_once "../controluser/menuuser.php"?>
         </div>
     </div>
     
@@ -84,33 +84,32 @@
                 exit();
             }
 
-            $contra="select password from usuarios where id='$_GET[id]'";
+            $contra="select password from usuarios where id='$_GET[cod]'";
 
             $consultaconcontra="UPDATE usuarios set user='$_POST[user]', password=md5('$_POST[password]'),nombre='$_POST[nombre]',correo='$_POST[correo]' 
-            where id=$_GET[id]";
+            where id=$_GET[cod]";
 
             $consultasincontra="UPDATE usuarios set user='$_POST[user]',nombre='$_POST[nombre]',correo='$_POST[correo]' 
-            where id=$_GET[id]";
+            where id=$_GET[cod]";
 
             if ($result = $connection->query($contra)) {
                 $obj = $result->fetch_object();
               
                 if ($_POST["password"]==$obj->password) {
                     if ($result = $connection->query($consultasincontra)) {
-                        header("Location: usuarioaeditar.php");
+                        header("Location: perfiluser.php");
                     }
                     else {
                             echo "<h1>Usuario no actulizado</h1>";
-                            echo $consultasincontra;
-                            //header("refresh:3;url=editarusuarios.php");
+                            header("refresh:3;url=editarperfil.php");
                     } 
                 } else {
                     if ($result = $connection->query($consultaconcontra)) {
-                        header("Location: usuarioaeditar.php");   
+                        header("Location: perfiluser.php");   
                     }
                     else {
                             echo "<h1>Usuario no actulizado</h1>";
-                            header("refresh:3;url=editarusuarios.php");
+                            header("refresh:3;url=editarperfil.php");
                     }  
                 }
             }

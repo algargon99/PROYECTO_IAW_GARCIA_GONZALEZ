@@ -52,10 +52,11 @@ if (isset($_SESSION["user"]) && $_SESSION["user"]!="admin") { ?>
                         echo "<tr><td><b>Nombre: </b></td><td>$obj->nombre</td></tr>";
                         echo "<tr><td><b>Correo: </b></td><td>$obj->correo</td></tr>";
                         echo "<tr><td><b>Fecha de alta: </b></td><td>$obj->fecha_alta</td></tr>";
-                       
                         echo "</table>";
                     
-                    
+                        echo "<div style='margin:5px;' class='text-right'>";
+                        echo "<a class='btn btn-primary' id='edit' href='editarperfil.php?cod=$obj->id&user=$obj->user&password=$obj->password&nombre=$obj->nombre&correo=$obj->correo'>Editar perfil</a>";
+                        echo "</div>";
 
                     //Free the result. Avoid High Memory Usages
                     $result->close();
