@@ -50,9 +50,6 @@ if ($result = $connection->query("select * from empleados;")) {
         <th>DNI</th>
         <th>Nombre</th>
         <th>Apellidos</th>
-        <th>Dirección</th>
-        <th>Teléfono</th>      
-        <th>Fecha de Contratación</th>  
        </tr>
     </thead>
 
@@ -67,9 +64,6 @@ if ($result = $connection->query("select * from empleados;")) {
         echo "<td>".$obj->dni."</td>";
         echo "<td>".$obj->nombre."</td>";
         echo "<td>".$obj->apellidos."</td>";
-        echo "<td>".$obj->direccion."</td>";
-        echo "<td>".$obj->telefono."</td>";
-        echo "<td>".$obj->fechacontratacion."</td>";
         echo "<td><a href='editarempleados.php?cod=$obj->codempleado&dni=$obj->dni&nombre=$obj->nombre&apellidos=$obj->apellidos&direccion=$obj->direccion&telefono=$obj->telefono&fechacontratacion=$obj->fechacontratacion'>Editar empleado</a></td>";
 
         echo "</tr>";

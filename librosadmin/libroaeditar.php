@@ -49,9 +49,6 @@ if ($result = $connection->query("select * from libros;")) {
         <th>ISBN</th>
         <th>Título</th>
         <th>Autor</th>
-        <th>Editorial</th>
-        <th>Número de páginas</th>
-        <th>Encuadernación</th>      
         <th>Precio</th>       
        </tr>
     </thead>
@@ -66,9 +63,6 @@ if ($result = $connection->query("select * from libros;")) {
         echo "<td>".$obj->isbn."</td>";
         echo "<td>".$obj->titulo."</td>";
         echo "<td>".$obj->autor."</td>";
-        echo "<td>".$obj->editorial."</td>";
-        echo "<td>".$obj->numpag."</td>";
-        echo "<td>".$obj->encuadernacion."</td>";
         echo "<td>".$obj->precio." €</td>";
         echo "<td><a href='editarlibros.php?isbn=$obj->isbn&titulo=$obj->titulo&autor=$obj->autor&editorial=$obj->editorial&numpag=$obj->numpag&encuadernacion=$obj->encuadernacion&precio=$obj->precio&rutaimagen=$obj->rutaimagen'>Editar libro</a></td>";
 

@@ -51,9 +51,6 @@ if ($result = $connection->query("select * from empleados;")) {
         <th>DNI</th>
         <th>Nombre</th>
         <th>Apellidos</th>
-        <th>Dirección</th>
-        <th>Teléfono</th>      
-        <th>Fecha de Contratación</th>        
       </tr> 
     </thead> 
 
@@ -68,9 +65,6 @@ if ($result = $connection->query("select * from empleados;")) {
         echo "<td>".$obj->dni."</td>";
         echo "<td>".$obj->nombre."</td>";
         echo "<td>".$obj->apellidos."</td>";
-        echo "<td>".$obj->direccion."</td>";
-        echo "<td>".$obj->telefono."</td>";
-        echo "<td>".$obj->fechacontratacion."</td>";
         echo "<td><a href='borraremple.php?cod=$obj->codempleado&nombre=$obj->nombre&apellidos=$obj->apellidos'>Borrar usuario</a></td>";
         echo "</tr>";
     }

@@ -51,8 +51,7 @@ if ($result = $connection->query("select * from usuarios;")) {
         <th>Id</th>
         <th>Usuario</th>
         <th>Nombre</th>
-        <th>Correo</th>
-        <th>Fecha Alta</th>      
+
        </tr> 
     </thead> 
 
@@ -66,8 +65,7 @@ if ($result = $connection->query("select * from usuarios;")) {
         echo "<td>".$obj->id."</td>";
         echo "<td>".$obj->user."</td>";
         echo "<td>".$obj->nombre."</td>";
-        echo "<td>".$obj->correo."</td>";
-        echo "<td>".$obj->fecha_alta."</td>";
+    
         echo "<td><a href='borraruser.php?id=$obj->id&user=$obj->user'>Borrar usuario</a></td>";
         echo "</tr>";
     }
