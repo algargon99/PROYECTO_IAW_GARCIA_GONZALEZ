@@ -40,38 +40,53 @@ if ($connection->connect_errno) {
     exit();
 }
 
-//MAKING A SELECT QUERY
-/* Consultas de selección que devuelven un conjunto de resultados */
-if ($result = $connection->query("select e.nombre n, e.apellidos a, u.user u, p.fechaentrega f from pedidos p
-join usuarios u on u.id=p.id
-join empleados e on e.codempleado = p.codempleado
-where codpedido=$_GET[cod]")) {
 
+$query="select e.nombre n, e.apellidos a, u.user u, p.fechaentrega f from pedidos p
+left join usuarios u on u.id=p.id
+left join empleados e on e.codempleado = p.codempleado
+where codpedido=$_GET[cod]";
 
-?>
+$query2="select titulo, precio*cantidad total from tienen t join libros l on l.isbn=t.isbn where codpedido=$_GET[cod]";
 
-    
+$query3="select precio*cantidad total from ";
 
-<?php
+if ($result = $connection->query($query)) {
 
-    //FETCHING OBJECTS FROM THE RESULT SET
-    //THE LOOP CONTINUES WHILE WE HAVE ANY OBJECT (Query Row) LEFT
    $obj = $result->fetch_object();
-        //PRINTING EACH ROW
         echo "<table class='table custab'";
-        echo "<tr><td><b>Código de Pedido: </b></td><td>$_GET[cod]</td></tr>";
-        echo "<tr><td><b>Fecha de Entrega: </b></td><td>$obj->f</td></tr>";
-        echo "<tr><td><b>Usuario: </b></td><td>$obj->n $obj->a</td></tr>";
-        echo "<tr><td><b>Empleado : </b></td><td>$obj->u</td></tr>";
+        echo "<tr><td><b>Fecha de Entrega </b></td><td>$obj->f</td></tr>";
+        if ($obj->n!=NULL && $obj->a!=NULL) {
+            echo "<tr><td><b>Empleado </b></td><td>$obj->n $obj->a</td></tr>";        
+        } else {
+            echo "<tr><td><b>Empleado </b></td><td>-</td></tr>";
+        }
+        echo "<tr><td><b>Usuario </b></td><td>$obj->u</td></tr>";
+        echo "<tr><td><b>Libros</b></td><td><ul>";
+        if ($result = $connection->query($query2)) {
+            while($obj = $result->fetch_object()) {
+            echo "<li>$obj->titulo</li>";
+            }
+        }
+        echo "</ul></td></tr>";
+        echo "<tr><td><b>Precio total: </b></td>";
+        $total=0;
+        if ($result = $connection->query($query2)) {
+            while($obj = $result->fetch_object()) {
+                $total=$total+$obj->total;
+            }
+            echo "<td>$total</td>";
+        }
+        echo "</tr>";
+
         echo "</table>";
     
 
-    //Free the result. Avoid High Memory Usages
+
     $result->close();
     unset($obj);
     unset($connection);
 
-} //END OF THE IF CHECKING IF THE QUERY WAS RIGHT
+} 
 } else {
     session_destroy();
     header("Location: ../login.php");

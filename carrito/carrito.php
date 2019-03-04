@@ -56,9 +56,8 @@ if (isset($_SESSION["user"])) { ?>
                     </thead>
                     <tbody>
                         <?php
-
+                            $preciototal = 0; 
                             foreach ($_SESSION["cart"] as $k => $v) {
-                                
                                 $connection = new mysqli("localhost", "root", "123456", "proyecto");
                                 $connection->set_charset("utf8");
 
@@ -68,8 +67,9 @@ if (isset($_SESSION["user"])) { ?>
                                 }
                                 if ($result = $connection->query("select * from libros where isbn=$k;")) {
                                     $obj = $result->fetch_object();
-                                        $query2="INSERT into tienen values ($v,$connection->insert_id,$k)";
                                         echo "<tr><td>".$obj->titulo."</td><td>".$obj->precio."€</td><td>".$v."</td><td>".$obj->precio*$v."€</td></tr>";
+                                        $preciototal=$preciototal+$obj->precio*$v;
+
 
                                 $result->close();
                                 unset($obj);
@@ -77,6 +77,8 @@ if (isset($_SESSION["user"])) { ?>
                             
                             }
                             }
+                            echo "<tr><td><b>Precio Total del pedido</b></td><td></td><td></td><td><b>".$preciototal."€</b></td></tr>";
+
                         ?>
                     </tbody>
                 </table>

@@ -37,22 +37,26 @@ if (isset($_SESSION["user"]) && $_SESSION["user"]!="admin") { ?>
             //MAKING A SELECT QUERY
             /* Consultas de selección que devuelven un conjunto de resultados */
             if ($result = $connection->query("select * from libros order by isbn desc limit 1;")) {
-            
-                ?>
-            
-            <?php
-            
-                //FETCHING OBJECTS FROM THE RESULT SET
-                //THE LOOP CONTINUES WHILE WE HAVE ANY OBJECT (Query Row) LEFT
-                while($obj = $result->fetch_object()) {
+                $obj = $result->fetch_object();  ?>
+               
+                <div class="row">
+                    <div class="col-md-4">
+                    <?php
+                    echo "<img style='width:150px;height:150px;' src='$obj->rutaimagen'>";
+                    ?>
+                    </div>
+                    <div class="col-md-8">
+
+                <?php
                     //PRINTING EACH ROW
                     echo "<center><h3>".$obj->titulo."</h3></center>";
                     echo "<center><h4>".$obj->autor."</h4></center>";
                     echo "<center><h4>".$obj->precio." €</h4></center>";
-                    echo "<br>";
+                    echo "<br><br>";
                     echo "<p><a href='../librosuser/libro.php?cod=$obj->isbn'>Datos del libro</a><p>";
-                }
-            
+                    echo "</div>";
+                
+               
                 //Free the result. Avoid High Memory Usages
                 $result->close();
                 unset($obj);

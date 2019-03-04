@@ -59,7 +59,7 @@ if ($result = $connection->query("select * from libros where isbn='$_GET[cod]'")
         <div class="col-md-4">
          <?php
          
-         echo "<img style='margin-top:15px;width:250px;height:250px;' src='$obj->rutaimagen'>";
+         echo "<img style='margin-top:15px;width:240px;height:240px;' src='$obj->rutaimagen'>";
 
          ?>
         </div>

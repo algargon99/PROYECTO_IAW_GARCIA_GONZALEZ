@@ -37,7 +37,7 @@ ob_start(); ?>
             exit();
         }
         
-   
+
             $query1="INSERT into pedidos (fechaentrega,id) values (date_add(curdate(), interval 1 day),'$_SESSION[id]')";
             if ($result1=$connection->query($query1)) {
             

@@ -88,6 +88,7 @@ CREATE TABLE `libros` (
   `numpag` int(11) DEFAULT NULL,
   `encuadernacion` varchar(45) DEFAULT NULL,
   `precio` int(11) NOT NULL,
+  `rutaimagen` varchar(200) NULL,
   PRIMARY KEY (`isbn`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -111,7 +112,6 @@ DROP TABLE IF EXISTS `pedidos`;
 CREATE TABLE `pedidos` (
   `codpedido` int(11) NOT NULL AUTO_INCREMENT,
   `fechaentrega` varchar(45) NOT NULL,
-  `preciototal` int(13) NOT NULL,
   `id` int(11) DEFAULT NULL,
   `codempleado` int(11) DEFAULT NULL,
   PRIMARY KEY (`codpedido`),
@@ -180,15 +180,11 @@ alter table libros auto_increment=1;
 alter table empleados auto_increment=1;
 alter table pedidos auto_increment=1;
 
-insert into libros (titulo,autor,editorial,numpag,encuadernacion,precio) values ("El principito","Antoine de Saint-Exupéry","Salamanca",50,"Anillas",10);
-insert into libros (titulo,autor,editorial,numpag,encuadernacion,precio) values ("Blancanieves y los Siete Enanitos","Jacob Grimm","Salamanca",150,"Cartona",15);
-insert into libros (titulo,autor,editorial,numpag,encuadernacion,precio) values ("Charlie y la Fabrica de chocolate","Roald Dahl","Santillana",231,"Cartone",12.50);
+insert into libros (titulo,autor,editorial,numpag,encuadernacion,precio,rutaimagen) values ("El principito","Antoine de Saint-Exupéry","Salamanca",50,"Anillas",10,"../imagenes/principito.jpg");
+insert into libros (titulo,autor,editorial,numpag,encuadernacion,precio,rutaimagen) values ("Blancanieves y los Siete Enanitos","Jacob Grimm","Salamanca",150,"Cartona",15,"../imagenes/blancanieves.jpg");
+insert into libros (titulo,autor,editorial,numpag,encuadernacion,precio,rutaimagen) values ("Charlie y la Fabrica de chocolate","Roald Dahl","Santillana",231,"Cartone",12.50,"../imagenes/pulgarcito.jpeg");
 
 
-insert into empleados (dni,nombre,apellidos,direccion,telefono,fechacontratacion) values("12345678M","Alejandro","Roman Caballero","c/ Pocillo de Gilvan, Sevilla", 123456789,"03/03/2003");
-insert into empleados (dni,nombre,apellidos,direccion,telefono,fechacontratacion) values("12345679M","Alex","Roman","c/ Pocillo de Gilvan", 123456788,"03/03/2005");
-insert into empleados (dni,nombre,apellidos,direccion,telefono,fechacontratacion) values("12345678A","Alexa","Romana","c/ Pocillo", 123456768,"2003/03/05");
-
-insert into pedidos (fechaentrega,id,codempleado) values (date_add(curdate(), interval 1 day),2,1);
-insert into pedidos (fechaentrega,id,codempleado) values (date_add(curdate(), interval 1 day),1,2);
-insert into pedidos (fechaentrega,id,codempleado) values (date_add(curdate(), interval 1 day),2,2);
+insert into empleados (dni,nombre,apellidos,direccion,telefono,fechacontratacion) values("12345678M","Alejandro","Roman Caballero","c/ Pocillo de Gilvan, Sevilla", 123456789,"2003/01/03");
+insert into empleados (dni,nombre,apellidos,direccion,telefono,fechacontratacion) values("12345679M","Alberto","Garcia Gonzalez","c/ Pocillo de Gilvan", 123456788,"2005/03/20");
+insert into empleados (dni,nombre,apellidos,direccion,telefono,fechacontratacion) values("12345678A","Pepe","Perez","c/ Pocillo", 123456768,"2003/03/05");
