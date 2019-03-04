@@ -41,43 +41,45 @@ if ($connection->connect_errno) {
 
 //MAKING A SELECT QUERY
 /* Consultas de selección que devuelven un conjunto de resultados */
-if ($result = $connection->query("select * from pedidos p join usuarios u on p.id=u.id where user='$_SESSION[user]' ;")) {
+$query="select * from pedidos p join usuarios u on p.id=u.id where user='$_SESSION[user]'";
+$query1="select count(*) cantidad from pedidos p join usuarios u on p.id=u.id where user='$_SESSION[user]'";
 
+if ($result = $connection->query($query1)) {
+    $obj = $result->fetch_object(); 
+    
+    if ($obj->cantidad==0) {
+        echo "<div style='padding:10px;background-color: white; border-radius:10px;'><h1><center>No tienes ningún pedido</center></h1></div>";
+    } else {
+        
+   
+if ($result = $connection->query($query)) {
 
-
-
-    echo " <table class='table custab' style='background-color: white; border-radius:10px;'>";
     ?>
+     <table class='table custab' style='background-color: white; border-radius:10px;'>
     <thead>
       <tr>
-        <th>Codigo de Pedido</th>
-        <th>Fecha de Entrega</th>
-        <th>Codigo de Cliente</th>
-        <th>Codigo de Empleado</th>           
+        <th>Numero de Pedido</th>
+        <th>Fecha de Entrega</th>         
        </tr>
     </thead>
 
 <?php
 
-    //FETCHING OBJECTS FROM THE RESULT SET
-    //THE LOOP CONTINUES WHILE WE HAVE ANY OBJECT (Query Row) LEFT
+    
     while($obj = $result->fetch_object()) {
-        //PRINTING EACH ROW
         echo "<tr>";
         echo "<td>".$obj->codpedido."</td>";
         echo "<td>".$obj->fechaentrega."</td>";
-        echo "<td>".$obj->id."</td>";
-        echo "<td>".$obj->codempleado."</td>";
         echo "<td><a href='pedido.php?cod=$obj->codpedido'>Datos del pedido</a></td>";
         echo "</tr>";
     }
 
-    //Free the result. Avoid High Memory Usages
     $result->close();
     unset($obj);
     unset($connection);
-
-} //END OF THE IF CHECKING IF THE QUERY WAS RIGHT
+}
+}
+} 
 } else {
     session_destroy();
     header("Location: ../login.php");

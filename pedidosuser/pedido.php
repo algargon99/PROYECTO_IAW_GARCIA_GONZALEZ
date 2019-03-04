@@ -30,11 +30,9 @@ if (isset($_SESSION["user"]) && $_SESSION["user"]!="admin") {
     
     <?php
 
-//CREATING THE CONNECTION
 $connection = new mysqli("localhost", "user", "2asirtriana", "proyecto");
 $connection->set_charset("utf8");
 
-//TESTING IF THE CONNECTION WAS RIGHT
 if ($connection->connect_errno) {
     printf("Connection failed: %s\n", $connection->connect_error);
     exit();
@@ -47,8 +45,6 @@ left join empleados e on e.codempleado = p.codempleado
 where codpedido=$_GET[cod]";
 
 $query2="select titulo, precio*cantidad total from tienen t join libros l on l.isbn=t.isbn where codpedido=$_GET[cod]";
-
-$query3="select precio*cantidad total from ";
 
 if ($result = $connection->query($query)) {
 
@@ -74,7 +70,7 @@ if ($result = $connection->query($query)) {
             while($obj = $result->fetch_object()) {
                 $total=$total+$obj->total;
             }
-            echo "<td>$total</td>";
+            echo "<td>".$total."€</td>";
         }
         echo "</tr>";
 
