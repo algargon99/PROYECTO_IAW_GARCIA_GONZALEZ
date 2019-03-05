@@ -38,9 +38,12 @@ if ($connection->connect_errno) {
     exit();
 }
 
-//MAKING A SELECT QUERY
-/* Consultas de selección que devuelven un conjunto de resultados */
-if ($result = $connection->query("select * from pedidos;")) {
+$query="select e.nombre n, e.apellidos a , p.*, u.user nombreusuario 
+from pedidos p 
+join usuarios u on u.id=p.id 
+left join empleados e on p.codempleado=e.codempleado";
+
+if ($result = $connection->query($query)) {
 
    echo " <table class='table custab' style='background-color: white; border-radius:10px;'>";
     ?>
@@ -48,8 +51,8 @@ if ($result = $connection->query("select * from pedidos;")) {
       <tr>
         <th>Codigo de Pedido</th>
         <th>Fecha de Entrega</th>
-        <th>Codigo de Cliente</th>
-        <th>Codigo de Empleado</th>   
+        <th>Cliente</th>
+        <th>Empleado</th>   
        </tr>
     </thead>
 
@@ -62,8 +65,12 @@ if ($result = $connection->query("select * from pedidos;")) {
         echo "<tr>";
         echo "<td>".$obj->codpedido."</td>";
         echo "<td>".$obj->fechaentrega."</td>";
-        echo "<td>".$obj->id."</td>";
-        echo "<td>".$obj->codempleado."</td>";
+        echo "<td>".$obj->nombreusuario."</td>";
+        if ($obj->n!=NULL && $obj->a!=NULL) {
+            echo "<td>$obj->n $obj->a</td>";        
+        } else {
+            echo "<td>-</td>";
+        }
         echo "<td><a href='editarpedidos.php?cod=$obj->codpedido&fechaentrega=$obj->fechaentrega&id=$obj->id&codempleado=$obj->codempleado'>Editar pedido</a></td>";
 
         echo "</tr>";

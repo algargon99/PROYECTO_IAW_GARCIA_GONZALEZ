@@ -35,26 +35,109 @@
 
                 <form method="post">
                     <div class="row">
-                        <div class="login-form">
+                        <div class="login-form" style="background-color: white; border-radius:10px;padding:20px;">
                             <div class="main-div">
-                            <div class="form-group">
-                                <input type="text" class="form-control" name="codpedido" value="<?php echo $_GET['cod']; ?>">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control" name="fechaentrega" value="<?php echo $_GET['fechaentrega']; ?>">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control" name="id" value="<?php echo $_GET['id']; ?>">
-                            </div>
-                            <div class="form-group">
-                                <input type="number" class="form-control" name="codempleado" value="<?php echo $_GET['codempleado']; ?>">
-                            </div>
-                            
-                            <button type="submit" class="btn btn-primary">Editar</button>
-                            </div>
+                                <div class="form-group">
+                                    Número de pedido <input readonly type="text" class="form-control" name="codpedido" value="<?php echo $_GET['cod']; ?>">
 
+                                </div>
+                                <div class="form-group">
+                                    Fecha de entrega <input type="text" class="form-control" name="fechaentrega" value="<?php echo $_GET['fechaentrega']; ?>">
+                                </div>
+                                <div class="form-group">
+                                <?php
+                                        $connection = new mysqli("localhost", "root", "123456", "proyecto");
+                                        $connection->set_charset("uft8");
+
+                                        if ($connection->connect_errno) {
+                                            printf("Connection failed: %s\n", $connection->connect_error);
+                                            exit();
+                                        }
+                                        
+                                            $q="SELECT * from usuarios";
+                                        if ($result = $connection->query($q)) {
+                                            echo "<p>Usuario: <select name='usuario'>";
+                                            while($obj = $result->fetch_object()) {
+                                                echo "<option value='".$obj->id."'>".$obj->user."</option>";    
+                                            }
+                                            echo "</select></p>";
+                                            
+                                            $result->close();
+                                            unset($obj);
+                                            unset($connection);
+                                        }
+                                        ?>    
+                                </div>
+                                <div class="form-group">
+                                    <?php
+                                        $connection = new mysqli("localhost", "root", "123456", "proyecto");
+                                        $connection->set_charset("uft8");
+
+                                        if ($connection->connect_errno) {
+                                            printf("Connection failed: %s\n", $connection->connect_error);
+                                            exit();
+                                        }
+                                        
+                                            $q="SELECT * from empleados";
+                                        if ($result = $connection->query($q)) {
+                                            echo "<p>Empleado: <select name='empleado'>";
+                                            while($obj = $result->fetch_object()) {
+                                                echo "<option value='".$obj->codempleado."'>".$obj->nombre." ".$obj->apellidos."</option>";    
+                                            }
+                                            echo "</select></p>";
+                                            
+                                            $result->close();
+                                            unset($obj);
+                                            unset($connection);
+                                        }
+                                    ?>                                
+                                </div>
+                                <div class="form-group">
+                                <p>Libros actuales:</p>
+                                <?php
+                                        $connection = new mysqli("localhost", "root", "123456", "proyecto");
+                                        $connection->set_charset("uft8");
+
+                                        if ($connection->connect_errno) {
+                                            printf("Connection failed: %s\n", $connection->connect_error);
+                                            exit();
+                                        }                                  
+                                        $query="select * from tienen t join libros l on l.isbn=t.isbn where codpedido=$_GET[cod]";                                    
+                                        if ($result = $connection->query($query)) {                                       
+                                        while($obj = $result->fetch_object()) {   
+                                            echo $obj->titulo;                                        
+                                        } 
+                                      
+                                            $result->close();
+                                            unset($obj);
+                                            unset($connection);
+                                        }
+                                    ?> 
+                                   <br><br>
+
+                                    <p>Otros libros:</p>
+                                    <?php
+                                        $connection = new mysqli("localhost", "root", "123456", "proyecto");
+                                        $connection->set_charset("uft8");
+
+                                        if ($connection->connect_errno) {
+                                            printf("Connection failed: %s\n", $connection->connect_error);
+                                            exit();
+                                        }                                  
+                                        $query="select * from libros where isbn not in (select l.isbn from tienen t join libros l on l.isbn=t.isbn where codpedido=$_GET[cod]);";                                    
+                                        if ($result = $connection->query($query)) {                                       
+                                        while($obj = $result->fetch_object()) {   
+                                            echo "<div><button class='add' id=$obj->isbn>$obj->titulo</button></div>";                                        
+                                        }
+                                            $result->close();
+                                            unset($obj);
+                                            unset($connection);
+                                        }
+                                    ?> 
+                                </div>
+                                <button type="submit" class="btn btn-primary">Editar</button>
+                            </div>
                         </div>
-
                     </div>
                 </form>
                     
@@ -96,5 +179,14 @@
 
  ?>
 
+<script>
+
+$(".add").click(function(event){
+    event.preventDefault();
+
+
+});
+
+</script>
 </body>
 </html>

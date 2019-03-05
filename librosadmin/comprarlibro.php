@@ -94,6 +94,7 @@ if (isset($_SESSION["user"]) && $_SESSION["user"]=="admin") { ?>
               "isbn": libro
             }
           }).done(function(data) {
+            $("#contador").text(parseInt($("#quantity").val())+parseInt($("#contador").text()));
             console.log(data);
           });
         });

@@ -97,6 +97,7 @@
               
                 if ($_POST["password"]==$obj->password) {
                     if ($result = $connection->query($consultasincontra)) {
+                        $_SESSION["user"]=$_POST["user"];
                         header("Location: perfiluser.php");
                     }
                     else {
@@ -105,6 +106,7 @@
                     } 
                 } else {
                     if ($result = $connection->query($consultaconcontra)) {
+                        $_SESSION["user"]=$_POST["user"];
                         header("Location: perfiluser.php");   
                     }
                     else {

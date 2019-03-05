@@ -180,7 +180,7 @@ alter table libros auto_increment=1;
 alter table empleados auto_increment=1;
 alter table pedidos auto_increment=1;
 
-insert into libros (titulo,autor,editorial,numpag,encuadernacion,precio,rutaimagen) values ("El principito","Antoine de Saint-Exupéry","Salamanca",50,"Anillas",10,"../imagenes/principito.jpg");
+insert into libros (titulo,autor,editorial,numpag,encuadernacion,precio,rutaimagen) values ("El principito","Antoine de Saint-Exupery","Salamanca",50,"Anillas",10,"../imagenes/principito.jpg");
 insert into libros (titulo,autor,editorial,numpag,encuadernacion,precio,rutaimagen) values ("Blancanieves y los Siete Enanitos","Jacob Grimm","Salamanca",150,"Cartona",15,"../imagenes/blancanieves.jpg");
 insert into libros (titulo,autor,editorial,numpag,encuadernacion,precio,rutaimagen) values ("Charlie y la Fabrica de chocolate","Roald Dahl","Santillana",231,"Cartone",12.50,"../imagenes/pulgarcito.jpeg");
 

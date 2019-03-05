@@ -38,7 +38,7 @@ if (isset($_SESSION["user"]) && $_SESSION["user"]!="admin") { ?>
                 }
                 //MAKING A SELECT QUERY
                 /* Consultas de selección que devuelven un conjunto de resultados */
-                if ($result = $connection->query("select * from usuarios where user='$_SESSION[user]'")) {
+                if ($result = $connection->query("select * from usuarios where id='$_SESSION[id]'")) {
 
 
                     //FETCHING OBJECTS FROM THE RESULT SET

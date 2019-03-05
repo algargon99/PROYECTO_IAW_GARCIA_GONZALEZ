@@ -42,34 +42,30 @@ if (isset($_SESSION["user"]) && $_SESSION["user"]=="admin") { ?>
 
 
                     <?php
-                        $connect = new mysqli("localhost", "root", "123456", "proyecto");
-                        $connect->set_charset("uft8");
+                        $connection = new mysqli("localhost", "root", "123456", "proyecto");
+                        $connection->set_charset("uft8");
 
-                        //TESTING IF THE CONNECTION WAS RIGHT
-                        if ($connect->connect_errno) {
-                            printf("Connection failed: %s\n", $connect->connect_error);
+                        if ($connection->connect_errno) {
+                            printf("Connection failed: %s\n", $connection->connect_error);
                             exit();
                         }
-
-                        //MAKING A SELECT QUERY
-                        /* Consultas de selección que devuelven un conjunto de resultados */
+                        
                             $q="SELECT * from empleados";
-                        if ($resul = $connect->query($q)) {
+                        if ($result = $connection->query($q)) {
                             echo "<p>Empleado: <select name='empleado'>";
-                            while($o = $resul->fetch_object()) {
-                                echo "<option value='".$o->codempleado."'>".$o->nombre." ".$o->apellidos."</option>";    
+                            while($obj = $result->fetch_object()) {
+                                echo "<option value='".$obj->codempleado."'>".$obj->nombre." ".$obj->apellidos."</option>";    
                             }
                             echo "</select></p>";
                             
-                            //Free the result. Avoid High Memory Usages
-                            $resul->close();
-                            unset($o);
-                            unset($connect);
+                            $result->close();
+                            unset($obj);
+                            unset($connection);
                         }
                         ?>
 
                 </div>
-
+                                                                                                        
                 <div class="form-group">
 
                     <?php

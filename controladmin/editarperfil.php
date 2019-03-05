@@ -20,7 +20,7 @@
   //Open the session
   session_start();
 
-  if (isset($_SESSION["user"]) && $_SESSION["user"]!="admin") { ?>
+  if (isset($_SESSION["user"]) && $_SESSION["user"]=="admin") { ?>
     <div class="row">
         <div>
         <?php include_once "../controluser/menuuser.php"?>
@@ -44,7 +44,7 @@
                             <div class="form-group">
 
 
-                            <input type="text" class="form-control" name="user" placeholder="Usuario" value="<?php echo $_GET['user']; ?>">
+                            <input readonly type="text" class="form-control" name="user" placeholder="Usuario" value="<?php echo $_GET['user']; ?>">
 
                             </div>
                             <div class="form-group">
