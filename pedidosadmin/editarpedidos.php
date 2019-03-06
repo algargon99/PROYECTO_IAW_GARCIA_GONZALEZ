@@ -38,7 +38,7 @@
                         <div class="login-form" style="background-color: white; border-radius:10px;padding:20px;">
                             <div class="main-div">
                                 <div class="form-group">
-                                    Número de pedido <input readonly type="text" class="form-control" name="codpedido" value="<?php echo $_GET['cod']; ?>">
+                                    Número de pedido <input readonly type="text" class="form-control" id="pedido" name="codpedido" value="<?php echo $_GET['cod']; ?>">
 
                                 </div>
                                 <div class="form-group">
@@ -127,7 +127,7 @@
                                         $query="select * from libros where isbn not in (select l.isbn from tienen t join libros l on l.isbn=t.isbn where codpedido=$_GET[cod]);";                                    
                                         if ($result = $connection->query($query)) {                                       
                                         while($obj = $result->fetch_object()) {   
-                                            echo "<div><button class='add' id=$obj->isbn>$obj->titulo</button></div>";                                        
+                                            echo "<div><button val=$obj->isbn class='add' id=$obj->isbn>$obj->titulo</button></div>";                                        
                                         }
                                             $result->close();
                                             unset($obj);
@@ -183,7 +183,21 @@
 
 $(".add").click(function(event){
     event.preventDefault();
-
+    var libro = $(this).val();
+    var pedido =$("#pedido").val();
+    var url = "./insertareditar.php"+"?isbn="+libro+"&pedido="+pedido;
+    
+    $.ajax({
+            url: url,
+            type: "get",
+            data: {
+              "pedido": pedido
+            }
+        }).done(function(data) {
+            location.reload();
+          });
+        });
+     });
 
 });
 
