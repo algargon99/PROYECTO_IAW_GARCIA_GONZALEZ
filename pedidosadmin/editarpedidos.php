@@ -97,7 +97,6 @@
                                 <p>Libros actuales:</p>
                                 <div class="row">
                                 <?php
-                                        
                                         $connection = new mysqli("localhost", "root", "123456", "proyecto");
                                         $connection->set_charset("uft8");
 
@@ -108,7 +107,8 @@
                                         $query="select * from tienen t join libros l on l.isbn=t.isbn where codpedido=$_GET[cod]";                                    
                                         if ($result = $connection->query($query)) {                                       
                                         while($obj = $result->fetch_object()) {   
-                                            echo "<div class='row'><div class='col-md-1' id='$obj->isbn'><a href=''><img class='imagen' style='width:20px;' src='../CSS/cruzroja.jpg'></img></a></div><div class='col-md-4'> <input readonly class='form-control' value='$obj->isbn' type='text' name='libro$obj->isbn' id='$obj->isbn'></div><div class='col-md-3'>$obj->titulo</div><div class='col-md-4'><input class='form-control' value='$obj->cantidad' type='text' name='cantidad$obj->isbn' id='$obj->isbn'></div></div>";                                        
+                                            echo "<div class='row'><div class='col-md-1' id='$obj->isbn'><a href=''><img class='imagen' style='width:20px;' src='../CSS/cruzroja.jpg'></img></a></div><div class='col-md-4'> <input readonly class='form-control' value='$obj->isbn' type='text' name='$obj->isbn' id='$obj->isbn'></div><div class='col-md-3'>$obj->titulo</div><div class='col-md-4'><input class='form-control' value='$obj->cantidad' type='text' name='$obj->cantidad' id='$obj->isbn'></div></div>";                                        
+                                            
                                         } 
                                       
                                             $result->close();
@@ -159,15 +159,26 @@
                 printf("Connection failed: %s\n", $connection->connect_error);
                 exit();
             }
-
+            
             $consulta="UPDATE pedidos set codpedido='$_POST[codpedido]', fechaentrega='$_POST[fechaentrega]',
             id='$_POST[id]',codempleado='$_POST[codempleado]'where codpedido=$_GET[cod]";
 
-            //$query="update tienen set cantidad=$_POST[cantidad$_POST[libro]]";
+            $query1="select * from tienen t join libros l on l.isbn=t.isbn where codpedido=$_GET[cod]";  
  
                     if ($result = $connection->query($consulta)) {
-                        
-                        
+                        if ($result2 = $connection->query($query1)) {
+                            while($obj = $result->fetch_object()) {
+                                $libro=$obj->isbn;
+                                $query="update tienen set 
+                                cantidad=$_POST[$libro], 
+                                isbn=$_POST[$libro] 
+                                where codpedido=$_GET[cod]";
+                                if ($result3 = $connection->query($query)) {
+
+                                }
+                            }
+                        }
+                        header("Location: mostrarpedidos.php");
                     }
                 else {                    
                         header("Location: editarpedidos.php");
