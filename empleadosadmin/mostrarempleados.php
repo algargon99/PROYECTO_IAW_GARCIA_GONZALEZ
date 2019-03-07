@@ -27,20 +27,24 @@ if (isset($_SESSION["user"]) && $_SESSION["user"]=="admin") {
     <div class="col-md-8">
 <?php
 
-//Open the session
 
-//CREATING THE CONNECTION
 $connection = new mysqli("localhost", "root", "123456", "proyecto");
 $connection->set_charset("utf8");
 
-//TESTING IF THE CONNECTION WAS RIGHT
 if ($connection->connect_errno) {
     printf("Connection failed: %s\n", $connection->connect_error);
     exit();
 }
 
-//MAKING A SELECT QUERY
-/* Consultas de selección que devuelven un conjunto de resultados */
+$query1="select count(*) cantidad from empleados";
+
+if ($result = $connection->query($query1)) {
+    $obj = $result->fetch_object(); 
+    
+    if ($obj->cantidad==0) {
+        echo "<div style='padding:10px;background-color: white; border-radius:10px;'><h1><center>No tienes ningún empleado</center></h1></div>";
+    } else {
+
 if ($result = $connection->query("select * from empleados;")) {
 
 
@@ -60,10 +64,8 @@ if ($result = $connection->query("select * from empleados;")) {
 
 <?php
 
-    //FETCHING OBJECTS FROM THE RESULT SET
-    //THE LOOP CONTINUES WHILE WE HAVE ANY OBJECT (Query Row) LEFT
+    
     while($obj = $result->fetch_object()) {
-        //PRINTING EACH ROW
         echo "<tr>";
         echo "<td>".$obj->codempleado."</td>";
         echo "<td>".$obj->dni."</td>";
@@ -73,12 +75,12 @@ if ($result = $connection->query("select * from empleados;")) {
         echo "</tr>";
     }
 
-    //Free the result. Avoid High Memory Usages
     $result->close();
     unset($obj);
     unset($connection);
-
-} //END OF THE IF CHECKING IF THE QUERY WAS RIGHT
+}
+}
+}
 } else {
     session_destroy();
     header("Location: ../login.php");

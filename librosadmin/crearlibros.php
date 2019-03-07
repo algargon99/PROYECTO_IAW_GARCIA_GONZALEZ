@@ -30,8 +30,9 @@ if (isset($_SESSION["user"]) && $_SESSION["user"]=="admin") { ?>
     <?php if (!isset($_POST["titulo"])) : ?>
             <form method="post"  enctype="multipart/form-data">
             <div class="row">
+            <div class="col-md-4"></div>
             <div class="login-form">
-            <div class="main-div">
+            <div class="main-div col-md-4">
                     <div class="form-group">
                         <input type="text" class="form-control" name="titulo" placeholder="Título del libro">
                     </div>
@@ -59,7 +60,10 @@ if (isset($_SESSION["user"]) && $_SESSION["user"]=="admin") { ?>
                 </div>
             </div>
             </div>
+            <div class="col-md-4"></div>
             </div>
+            
+
             </div>
             
            

@@ -45,22 +45,19 @@ if (isset($_SESSION["user"]) && $_SESSION["user"]!="admin") { ?>
             
             <?php
             
-                //FETCHING OBJECTS FROM THE RESULT SET
-                //THE LOOP CONTINUES WHILE WE HAVE ANY OBJECT (Query Row) LEFT
+                
                     $obj = $result->fetch_object();
-                    //PRINTING EACH ROW
                     echo "<h2>Comprar libro <i>".$obj->titulo."</i></h2><br>";
                     echo "<center><h4>Precio: ".$obj->precio." €</h4></center>";
                     echo "<center>Cantidad: <input type='number' value='1' id='quantity'></center><br>";
                     echo "<center><a href='../controluser/principalusuario.php' id='button'>Añadir al carrito</a><br><br>";
 
             
-                //Free the result. Avoid High Memory Usages
                 $result->close();
                 unset($obj);
                 unset($connection);
             
-            } //END OF THE IF CHECKING IF THE QUERY WAS RIGHT
+            } 
             else {
                 session_destroy();
                 header("Location: ../login.php");

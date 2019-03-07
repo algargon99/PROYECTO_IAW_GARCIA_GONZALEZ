@@ -38,25 +38,25 @@
                         <div class="login-form">
                             <div class="main-div">
                             <div class="form-group">
-                                <input type="text" class="form-control" name="titulo" value="<?php echo $_GET['titulo']; ?>">
+                                <input type="text" class="form-control" name="titulo" placeholder="Título del libro" value="<?php echo $_GET['titulo']; ?>">
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control" name="autor" value="<?php echo $_GET['autor']; ?>">
+                                <input type="text" class="form-control" name="autor" placeholder="Autor del libro" value="<?php echo $_GET['autor']; ?>">
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control" name="editorial" value="<?php echo $_GET['editorial']; ?>">
+                                <input type="text" class="form-control" name="editorial" placeholder="Editorial del libro" value="<?php echo $_GET['editorial']; ?>">
                             </div>
                             <div class="form-group">
-                                <input type="number" class="form-control" name="numpag" value="<?php echo $_GET['numpag']; ?>">
+                                <input type="number" class="form-control" name="numpag" placeholder="Número de páginas" value="<?php echo $_GET['numpag']; ?>">
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control" name="encuadernacion" value="<?php echo $_GET['encuadernacion']; ?>">
+                                <input type="text" class="form-control" name="encuadernacion" placeholder="Encuadernación" value="<?php echo $_GET['encuadernacion']; ?>">
                             </div>
                             <div class="form-group">
-                                <input type="number" class="form-control" name="precio" value="<?php echo $_GET['precio']; ?>">
+                                <input type="number" class="form-control" name="precio" placeholder="Precio (sin €)" value="<?php echo $_GET['precio']; ?>">
                             </div>
                             <div class="form-group">
-                                <input type="file" class="form-control" name="image" value="<?php echo $_GET['rutaimagen']; ?>">
+                                <input type="file" class="form-control" name="image" placeholder="Seleccionar una imagen" value="<?php echo $_GET['rutaimagen']; ?>">
                             </div>
                             <button type="submit" class="btn btn-primary">Editar</button>
                             </div>

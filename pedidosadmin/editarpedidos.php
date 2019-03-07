@@ -36,8 +36,7 @@
 
                 <form method="post">
                     <div class="row">
-                        <div class="login-form" style="background-color: white; border-radius:10px;padding:20px;">
-                            <div class="main-div">
+                        <div class="login-form main-div" style="background-color: white; border-radius:10px;padding:20px;">
                                 <div class="form-group">
                                     Número de pedido <input readonly type="text" class="form-control" id="pedido" name="codpedido" value="<?php echo $_GET['cod']; ?>">
 
@@ -56,10 +55,11 @@
                                         }
                                         
                                             $q="SELECT * from usuarios";
+
                                         if ($result = $connection->query($q)) {
-                                            echo "<p>Usuario: <select name='usuario'>";
+                                            echo "<p>Usuario: <select name='usuario'>"; 
                                             while($obj = $result->fetch_object()) {
-                                                echo "<option value='".$obj->id."'>".$obj->user."</option>";    
+                                                echo "<option value='$obj->id'>".$obj->user."</option>";    
                                             }
                                             echo "</select></p>";
                                             
@@ -83,7 +83,7 @@
                                         if ($result = $connection->query($q)) {
                                             echo "<p>Empleado: <select name='empleado'>";
                                             while($obj = $result->fetch_object()) {
-                                                echo "<option value='".$obj->codempleado."'>".$obj->nombre." ".$obj->apellidos."</option>";    
+                                                echo "<option value='$obj->codempleado'>".$obj->nombre." ".$obj->apellidos."</option>";    
                                             }
                                             echo "</select></p>";
                                             
@@ -142,47 +142,52 @@
                                 <div class="text-right">
                                     <input type="submit" style="margin-top:10px;"  type="submit" class="btn btn-primary" value="Editar">
                                 </div>
-                            </div>
                         </div>
                     </div>
                 </form>
-                    
+            </div>
+        </div>    
                 
                 
             
             
             <?php else:?>
-            <?php
+           <?php  
+
             $connection = new mysqli("localhost", "root", "123456", "proyecto");
 
             if ($connection->connect_errno) {
                 printf("Connection failed: %s\n", $connection->connect_error);
                 exit();
             }
-            
-            $consulta="UPDATE pedidos set codpedido='$_POST[codpedido]', fechaentrega='$_POST[fechaentrega]',
-            id='$_POST[id]',codempleado='$_POST[codempleado]'where codpedido=$_GET[cod]";
+        
+            $consulta="UPDATE pedidos set codpedido=$_POST[codpedido], fechaentrega='$_POST[fechaentrega]',
+            id=$_POST[usuario],codempleado=$_POST[empleado] where codpedido=$_GET[cod]";
 
             $query1="select * from tienen t join libros l on l.isbn=t.isbn where codpedido=$_GET[cod]";  
  
                     if ($result = $connection->query($consulta)) {
-                        if ($result2 = $connection->query($query1)) {
-                            while($obj = $result->fetch_object()) {
-                                $libro=$obj->isbn;
-                                $query="update tienen set 
-                                cantidad=$_POST[$libro], 
-                                isbn=$_POST[$libro] 
-                                where codpedido=$_GET[cod]";
-                                if ($result3 = $connection->query($query)) {
-
-                                }
-                            }
                         }
+                    
+                    if ($result2 = $connection->query($query1)) {
+                        while($obj = $result->fetch_object()) {
+                            $libro=$obj->isbn;
+                            $query="update tienen set 
+                            cantidad=$_POST[$libro], 
+                            isbn=$_POST[$libro] 
+                            where codpedido=$_GET[cod]";
+                            if ($result3 = $connection->query($query)) {
+
+                            }
+                        }    
                         header("Location: mostrarpedidos.php");
                     }
                 else {                    
-                        header("Location: editarpedidos.php");
-                } ?>
+                        //header("Location: editarpedidos.php");
+                        echo $consulta;
+
+
+                }   ?> 
             <?php endif ?>
 
         </div>

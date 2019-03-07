@@ -39,7 +39,7 @@ if ($connection->connect_errno) {
     exit();
 }
 
-$query="select * from pedidos";
+$query="select * from pedidos p join usuarios u on u.id=p.id ";
 $query1="select count(*) cantidad from pedidos";
 
 if ($result = $connection->query($query1)) {
@@ -58,7 +58,7 @@ if ($result = $connection->query($query)) {
       <tr>
         <th>Numero de Pedido</th>
         <th>Fecha de Entrega</th>
-        <th>Codigo de Usuario</th>         
+        <th>Usuario</th>         
        </tr>
     </thead>
 
@@ -69,7 +69,7 @@ if ($result = $connection->query($query)) {
         echo "<tr>";
         echo "<td>".$obj->codpedido."</td>";
         echo "<td>".$obj->fechaentrega."</td>";
-        echo "<td>".$obj->id."</td>";
+        echo "<td>".$obj->user."</td>";
         echo "<td><a href='pedido.php?cod=$obj->codpedido'>Datos del pedido</a></td>";
         echo "</tr>";
     }
