@@ -7,7 +7,7 @@
         exit();
     }
 
-    $query="INSERT INTO tienen values(1,$_GET[pedido],$_GET[isbn])";
+    $query="DELETE FROM tienen where codpedido='$_GET[pedido]' and isbn='$_GET[isbn]'";
 
     if ($result = $connection->query($query)) {
           echo "OK";  

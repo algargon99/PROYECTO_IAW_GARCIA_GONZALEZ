@@ -8,10 +8,11 @@
         <title>Page Title</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="../CSS/styles.css">
-        <link rel="stylesheet" href="../CSS/menuadmin.css">        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="../CSS/menuadmin.css">        
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     </head>
     <body>
     <?php
@@ -105,7 +106,7 @@
                                         $query="select * from tienen t join libros l on l.isbn=t.isbn where codpedido=$_GET[cod]";                                    
                                         if ($result = $connection->query($query)) {                                       
                                         while($obj = $result->fetch_object()) {   
-                                            echo $obj->titulo;                                        
+                                            echo "<div id='$obj->isbn'><span><a href=''><img class='imagen' style='width:12px;' src='../CSS/cruzroja.jpg'></img></a>$obj->titulo<span><input class='form-control' value='$obj->cantidad' type='text' name='$obj->isbn' id='$obj->isbn'></div>";                                        
                                         } 
                                       
                                             $result->close();
@@ -127,7 +128,7 @@
                                         $query="select * from libros where isbn not in (select l.isbn from tienen t join libros l on l.isbn=t.isbn where codpedido=$_GET[cod]);";                                    
                                         if ($result = $connection->query($query)) {                                       
                                         while($obj = $result->fetch_object()) {   
-                                            echo "<div><button val=$obj->isbn class='add' id=$obj->isbn>$obj->titulo</button></div>";                                        
+                                            echo "<div><button value=$obj->isbn class='add' id=$obj->isbn>$obj->titulo</button></div>";                                        
                                         }
                                             $result->close();
                                             unset($obj);
@@ -157,6 +158,7 @@
             $consulta="UPDATE pedidos set codpedido='$_POST[codpedido]', fechaentrega='$_POST[fechaentrega]',
             id='$_POST[id]',codempleado='$_POST[codempleado]'where codpedido=$_GET[cod]";
 
+            $query="update tienen set cantidad=$_POST[]";
 
                     if ($result = $connection->query($consulta)) {
                         header("Location: ./pedidoaeditar.php");
@@ -181,25 +183,57 @@
 
 <script>
 
-$(".add").click(function(event){
+$(function() {
+    $(".add").click(function(event){
     event.preventDefault();
     var libro = $(this).val();
+    console.log(libro);
     var pedido =$("#pedido").val();
+    console.log(pedido);
     var url = "./insertareditar.php"+"?isbn="+libro+"&pedido="+pedido;
     
     $.ajax({
             url: url,
             type: "get",
             data: {
-              "pedido": pedido
+              "pedido": pedido,
+              "isbn": libro
             }
-        }).done(function(data) {
+    }
+        ).done(function(data) {
+            console.log(data);
             location.reload();
           });
         });
-     });
+
+    $(".imagen").click(function(event){
+    event.preventDefault();
+    var libro = $(this).parent().parent().parent().attr("id");
+    console.log(libro);
+    var pedido =$("#pedido").val();
+    console.log(pedido);
+    var url = "./borrareditar.php"+"?isbn="+libro+"&pedido="+pedido;
+    
+    $.ajax({
+            url: url,
+            type: "get",
+            data: {
+              "pedido": pedido,
+              "isbn": libro
+            }
+    }
+        ).done(function(data) {
+            console.log(data);
+            location.reload();
+          });
+        });
+
 
 });
+
+
+
+
 
 </script>
 </body>
