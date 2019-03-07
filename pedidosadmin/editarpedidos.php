@@ -95,7 +95,9 @@
                                 </div>
                                 <div class="form-group">
                                 <p>Libros actuales:</p>
+                                <div class="row">
                                 <?php
+                                        
                                         $connection = new mysqli("localhost", "root", "123456", "proyecto");
                                         $connection->set_charset("uft8");
 
@@ -106,7 +108,7 @@
                                         $query="select * from tienen t join libros l on l.isbn=t.isbn where codpedido=$_GET[cod]";                                    
                                         if ($result = $connection->query($query)) {                                       
                                         while($obj = $result->fetch_object()) {   
-                                            echo "<div id='$obj->isbn'><span><a href=''><img class='imagen' style='width:12px;' src='../CSS/cruzroja.jpg'></img></a>$obj->titulo<span><input class='form-control' value='$obj->cantidad' type='text' name='$obj->isbn' id='$obj->isbn'></div>";                                        
+                                            echo "<div class='row'><div class='col-md-1' id='$obj->isbn'><a href=''><img class='imagen' style='width:20px;' src='../CSS/cruzroja.jpg'></img></a></div><div class='col-md-4'> <input readonly class='form-control' value='$obj->isbn' type='text' name='libro$obj->isbn' id='$obj->isbn'></div><div class='col-md-3'>$obj->titulo</div><div class='col-md-4'><input class='form-control' value='$obj->cantidad' type='text' name='cantidad$obj->isbn' id='$obj->isbn'></div></div>";                                        
                                         } 
                                       
                                             $result->close();
@@ -114,6 +116,7 @@
                                             unset($connection);
                                         }
                                     ?> 
+                                    
                                    <br><br>
 
                                     <p>Otros libros:</p>
@@ -136,7 +139,9 @@
                                         }
                                     ?> 
                                 </div>
-                                <button type="submit" class="btn btn-primary">Editar</button>
+                                <div class="text-right">
+                                    <input type="submit" style="margin-top:10px;"  type="submit" class="btn btn-primary" value="Editar">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -158,10 +163,10 @@
             $consulta="UPDATE pedidos set codpedido='$_POST[codpedido]', fechaentrega='$_POST[fechaentrega]',
             id='$_POST[id]',codempleado='$_POST[codempleado]'where codpedido=$_GET[cod]";
 
-            $query="update tienen set cantidad=$_POST[]";
-
+            //$query="update tienen set cantidad=$_POST[cantidad$_POST[libro]]";
+ 
                     if ($result = $connection->query($consulta)) {
-                        header("Location: ./pedidoaeditar.php");
+                        
                         
                     }
                 else {                    
@@ -208,7 +213,7 @@ $(function() {
 
     $(".imagen").click(function(event){
     event.preventDefault();
-    var libro = $(this).parent().parent().parent().attr("id");
+    var libro = $(this).parent().parent().attr("id");
     console.log(libro);
     var pedido =$("#pedido").val();
     console.log(pedido);
