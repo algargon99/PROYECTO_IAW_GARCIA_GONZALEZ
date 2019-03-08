@@ -32,7 +32,7 @@
         <div class="col-md-8">
 
         
-            <?php if (!isset($_POST["titulo"])) : ?>
+            <?php if (!isset($_POST["usuario"])) : ?>
 
                 <form method="post">
                     <div class="row">
@@ -155,13 +155,14 @@
             <?php
             $connection = new mysqli("localhost", "root", "123456", "proyecto");
 
+
             if ($connection->connect_errno) {
                 printf("Connection failed: %s\n", $connection->connect_error);
                 exit();
             }
             
-            $consulta="UPDATE pedidos set codpedido='$_POST[codpedido]', fechaentrega='$_POST[fechaentrega]',
-            id='$_POST[id]',codempleado='$_POST[codempleado]'where codpedido=$_GET[cod]";
+            $consulta="UPDATE pedidos set codpedido=$_POST[codpedido], fechaentrega='$_POST[fechaentrega]',
+            id=$_POST[usuario],codempleado=$_POST[empleado] where codpedido=$_GET[cod]";
 
             $query1="select * from tienen t join libros l on l.isbn=t.isbn where codpedido=$_GET[cod]";  
  
