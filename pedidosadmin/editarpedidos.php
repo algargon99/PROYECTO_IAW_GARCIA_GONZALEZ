@@ -168,7 +168,7 @@
  
                     if ($result = $connection->query($consulta)) {
                         if ($result2 = $connection->query($query1)) {
-                            while($obj = $result->fetch_object()) {
+                            while($obj = $result2->fetch_object()) {
                                 $libro=$obj->isbn;
                                 $query="update tienen set 
                                 cantidad=$_POST[$libro], 
