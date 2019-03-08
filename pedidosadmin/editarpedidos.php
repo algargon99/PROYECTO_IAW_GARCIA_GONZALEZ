@@ -32,7 +32,7 @@
         <div class="col-md-8">
 
         
-            <?php if (!isset($_POST["titulo"])) : ?>
+            <?php if (!isset($_POST["usuario"])) : ?>
 
                 <form method="post">
                     <div class="row">
@@ -156,17 +156,36 @@
 
             $connection = new mysqli("localhost", "root", "123456", "proyecto");
 
+
             if ($connection->connect_errno) {
                 printf("Connection failed: %s\n", $connection->connect_error);
                 exit();
             }
+<<<<<<< HEAD
         
+=======
+            
+>>>>>>> 287debcd67b2fe268ba05d521b0763e7ae04437f
             $consulta="UPDATE pedidos set codpedido=$_POST[codpedido], fechaentrega='$_POST[fechaentrega]',
             id=$_POST[usuario],codempleado=$_POST[empleado] where codpedido=$_GET[cod]";
 
             $query1="select * from tienen t join libros l on l.isbn=t.isbn where codpedido=$_GET[cod]";  
  
                     if ($result = $connection->query($consulta)) {
+<<<<<<< HEAD
+=======
+                        if ($result2 = $connection->query($query1)) {
+                            while($obj = $result2->fetch_object()) {
+                                $libro=$obj->isbn;
+                                $query="update tienen set 
+                                cantidad=$_POST[$libro], 
+                                isbn=$_POST[$libro] 
+                                where codpedido=$_GET[cod]";
+                                if ($result3 = $connection->query($query)) {
+
+                                }
+                            }
+>>>>>>> 287debcd67b2fe268ba05d521b0763e7ae04437f
                         }
                     
                     if ($result2 = $connection->query($query1)) {
