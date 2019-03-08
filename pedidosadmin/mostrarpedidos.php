@@ -58,11 +58,7 @@ if ($result = $connection->query($query)) {
       <tr>
         <th>Numero de Pedido</th>
         <th>Fecha de Entrega</th>
-<<<<<<< HEAD
         <th>Usuario</th>         
-=======
-        <th>Usuario</th>
->>>>>>> 287debcd67b2fe268ba05d521b0763e7ae04437f
        </tr>
     </thead>
 
